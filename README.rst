@@ -35,7 +35,7 @@ Skills
   | Agile Development, Automated Testing, CI/CD 
 
 **Platforms and Infrastructure**
-  | GCP (Firebase, Pub/Sub, GKE), AWS (ECS, Lambda, S3), 
+  | GCP (Firebase, Pub/Sub, GKE), AWS (ECS, Lambda, S3) 
   | Docker, Openshift, Kubernetes, Prometheus
 
 **Tools**
@@ -48,10 +48,10 @@ Experience
   | :description:`Software Engineer` 
   | :organization:`CA Technologies` |---| :location:`Boulder, CO`
 
-  * Worked with multiple cross-functional teams to build and maintain a Business Intelligence Pipeline
-  * Used technologies like: Kafka, Kuberenetes, Clojure, Typescript, Rails, and Lua
-  * Created serveral command line tools (in Python and Go) used in doc generation and secret decryption
-  * Mentored and paired junior engineers and gave presentations on Javascript Promises, Bash, and Golang
+  * Working with multiple cross-functional teams to build and maintain a Business Intelligence Pipeline
+  * Using technologies like: Kafka, Kuberenetes, Clojure, Typescript, Rails, and Lua
+  * Creating command line tools (in Python and Go) used in doc generation and secret decryption
+  * Giving educational presentations on Promises, Bash, and Golang. Mentoring and pairing with junior engineers
       
 2016 - 2017
   | :description:`Associate Software Engineer`
@@ -65,7 +65,7 @@ Experience
   | :organization:`Findsome & Winmore` |---| :location:`Orlando, FL`
 
   * Collaborated with designers and other developers on internal and client based websites and applications
-  * Used technologies like Wordpress, Node, Rails, Angular, and React
+  * Used technologies like: Wordpress, Node, Rails, Angular, and React
   * Worked with stakeholders to plan and estimate the cost client projects
   * Transitioned development to to git from svn for easier collaboration
 
@@ -74,8 +74,9 @@ Experience
   | :organization:`The Storage Group` |---| :location:`Maitland, FL`
 
   * Worked to project managers to plan, design, and build client websites and applications
+  * Used technologies like: Wordpress, PHP, HTML, CSS, and Javascript
   * Performed Search Engine Optimization audits and updates on dozens of client websites
-  * Used technologies like Wordpress, PHP, HTML, CSS, and Javascript
+
 
 Education
 ---------
