@@ -1,72 +1,111 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i');
 
+/* General */
+
 html, body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  font-size: 10pt;
 }
+
+dl:not(.docinfo) {
+  position: relative;
+}
+
+dd {
+  -webkit-margin-start: 0;
+}
+
+
+/* Document */
 
 div.document {
-  position: relative;
-  max-width: 53rem;
-  font-size: 14px;
+  position: relative;  
 }
 
-.document .title {
-  text-align: left;
+div.document hr {
+  width: 100%;
 }
 
-.contact {
+dl.docinfo > dt.address, dl.docinfo > .updated {
   position: absolute;
-  top: 0;
+  top: -9999999999px;
+  margin: 0;
+}
+
+dl.docinfo > dd {
+  margin: 0;
+}
+
+dl.docinfo dd.address {
+  position: absolute;
   right: 0;
+  top: 0;  
   text-align: right;
 }
 
-.links {
-  display: flex;
-  -webkit-margin-before: 0;
-  -webkit-padding-start: 0;
-  list-style-type: none;
-  text-transform: capitalize;
+dl.docinfo dd.address pre {
+  margin: 0;
 }
 
-.links li {
-  margin-right: 0.5em;
+dl.docinfo {
+  columns: 1;
 }
 
-hr.docutils {
-  width: 100%;
+@media (min-width: 600px) {
+  dl.docinfo {
+      columns: 3
+  }
+
+  dl.docinfo dt {
+    float: none;
+    clear: none;
+  }
+
+  dl.docinfo > dt, dl.docinfo > dd {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+h1.title {
+  text-align: left;
 }
 
 h1:not(.title) {
   font-size: 1.4em
 }
 
+/* Experience Section */
+
 #experience dt, #education dt {
-  text-align: right;
-  margin-bottom: -1.8em;
+  position: absolute;
+  right: 0;
+  transform: translateY(100%);
 }
 
-#experience dd, #education dd {
-  -webkit-margin-start: 0;
-}
+/* Skills Section */
 
 #skills dl {
-  columns: 2 auto;
+  columns: 1;
 }
 
-#skills dl > dt {
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid;
+
+
+@media (min-width: 600px) {
+  #skills dl {
+      columns: 2
+  }
+
+  #skills dl > dt, #skills dl > dd {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
 }
 
-#skills dl > dd {
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid;
-  -webkit-margin-start: 0;
-}
+/* Printer Styles */
 
 @page { 
     size: auto;

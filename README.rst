@@ -1,27 +1,20 @@
 ======================
 Connor McKelvey
 ======================
+:Address: Boulder, CO
+          850-217-5880
+:Email: connormckelvey@gmail.com
+:Website: `connormckelvey.com`_
+:Github:  `github.com/connormckelvey`_
+:Updated: |date|
 
-.. class:: contact
-
-| Boulder, CO
-| 850-217-5880
-| connormckelvey@gmail.com
-
-.. class:: links
-
-* website_
-* github_ 
-
---------------------------------------------------------------------------------
+-----
 
 Software engineer with experience designing, building, testing and deploying
 real-time cloud-based applications. Constantly looking to improve automation, 
 internal tooling, as well as customer and developer experience within a project.
 Seeking an opportunity to solve challenging problems and contribute to customer 
 value within an agile, team of diverse and creative people.
-
-.. include:: utils.rst
 
 
 Skills
@@ -45,8 +38,8 @@ Experience
 ----------
 
 2017 - Present
-  | :description:`Software Engineer` 
-  | :organization:`CA Technologies` |---| :location:`Boulder, CO`
+  | **Software Engineer**
+  | *CA Technologies* |---| Boulder, CO
 
   * Working with multiple cross-functional teams to build and maintain a Business Intelligence Pipeline
   * Using technologies like: Kafka, Kuberenetes, Clojure, Typescript, Rails, and Lua
@@ -54,15 +47,15 @@ Experience
   * Giving educational presentations on Promises, Bash, and Golang. Mentoring and pairing with junior engineers
       
 2016 - 2017
-  | :description:`Associate Software Engineer`
-  | :organization:`CA Technologies` |---| :location:`Boulder, CO`
+  | **Associate Software Engineer**
+  | *CA Technologies* |---| Boulder, CO
 
   * Worked within a cross-functional team to develop a real-time task management tool
   * Used technologies like: ably.io_, Typescript, React, Node.JS and PostgresQL    
 
 2014 - 2016
-  | :description:`Web Developer`
-  | :organization:`Findsome & Winmore` |---| :location:`Orlando, FL`
+  | **Web Developer**
+  | *Findsome & Winmore* |---| Orlando, FL
 
   * Collaborated with designers and other developers on internal and client based websites and applications
   * Used technologies like: Wordpress, Node, Rails, Angular, and React
@@ -70,10 +63,10 @@ Experience
   * Transitioned development to to git from svn for easier collaboration
 
 2012 - 2014
-  | :description:`Web Developer`
-  | :organization:`The Storage Group` |---| :location:`Maitland, FL`
+  | **Web Developer**
+  | *The Storage Group* |---| Maitland, FL
 
-  * Worked to project managers to plan, design, and build client websites and applications
+  * Worked with project managers to plan, design, and build client websites and applications
   * Used technologies like: Wordpress, PHP, HTML, CSS, and Javascript
   * Performed Search Engine Optimization audits and updates on dozens of client websites
 
@@ -82,21 +75,29 @@ Education
 ---------
 
 2010 - 2013
-  | :description:`B.A. Sociology`
-  | :organization:`University of Central Florida` |---| :location:`Orlando, FL` 
+  | **B.A. Sociology**
+  | *University of Central Florida* |---| Orlando, FL
 
   * Minor in Cultural Anthropology, Certificate in Women's Studies
   * Active in Amnesty International and Knight's Advocates
   * Volunteered with UCF Victims Services and Harbor House of Central Florida
 
+-----
 
-.. footer:: Copyright |copy| |year|, Connor McKelvey
+Copyright |copy| |year|, Connor McKelvey
+
+
+.. meta::
+   :description: Connor McKelvey's Software Engineering Resume
+   :keywords: software, engineering, development, cloud-native, cloud-based,
+      real-time, big data, kuberenetes, docker
 
 .. |copy| unicode:: 0xA9
 .. |date| date::
 .. |year| date:: %Y
 .. |time| date:: %H:%M
 .. |---| unicode:: U+2014
-.. _website: http://connormckelvey.com
-.. _github: https://github.com/connormckelvey
+
+.. _connormckelvey.com: http://connormckelvey.com
+.. _github.com/connormckelvey: https://github.com/connormckelvey
 .. _ably.io: https://ably.io
