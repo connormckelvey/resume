@@ -2,9 +2,9 @@
 .DEFAULT_GOAL := dist
 
 dist/Connor_McKelvey__Resume.html:
-	@rst2html5.py README.rst dist/Connor_McKelvey__Resume.html
+	@rst2html5.py --stylesheet=minimal.css,plain.css,resume.css README.rst dist/Connor_McKelvey__Resume.html
 
-dist: bootstrap dist/Connor_McKelvey__Resume.html
+dist: bootstrap clean dist/Connor_McKelvey__Resume.html
 
 open:
 	@open dist/Connor_McKelvey__Resume.html

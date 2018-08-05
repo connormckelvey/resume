@@ -2,11 +2,18 @@
 Connor McKelvey
 ======================
 
-:Website: connormckelvey.com_
-:Email: connormckelvey@gmail.com
-:Github: `github.com/connormckelvey`_ 
-:Location: Boulder, CO
-:Phone: 850-217-5880
+.. class:: contact
+
+| Boulder, CO
+| 850-217-5880
+| connormckelvey@gmail.com
+
+.. class:: links
+
+* website_
+* github_ 
+
+--------------------------------------------------------------------------------
 
 Software engineer with experience designing, building, testing and deploying
 real-time cloud-based applications. Constantly looking to improve automation, 
@@ -24,12 +31,12 @@ Skills
   | Javascript/NodeJS, Elixir, Clojure, Python, Go, Ruby, Lua 
   | React, Electron, Rails, Phoenix, Rails, OpenResty
 
+**Practices**
+  | Agile Development, Automated Testing, CI/CD 
+
 **Platforms and Infrastructure**
   | GCP (Firebase, Pub/Sub, GKE), AWS (ECS, Lambda, S3), 
   | Docker, Openshift, Kubernetes, Prometheus
-
-**Practices**
-  | Agile Development, Automated Testing, CI/CD 
 
 **Tools**
   | Bash, Make, RST, Webpack, Helm, Minikube, Grafana
@@ -43,7 +50,7 @@ Experience
 
   * Worked with multiple cross-functional teams to build and maintain a Business Intelligence Pipeline
   * Used technologies like: Kafka, Kuberenetes, Clojure, Typescript, Rails, and Lua
-  * Created serveral command line tools (in Python and Go) focued on documentation generation and secret decryption
+  * Created serveral command line tools (in Python and Go) used in doc generation and secret decryption
   * Mentored and paired junior engineers and gave presentations on Javascript Promises, Bash, and Golang
       
 2016 - 2017
@@ -89,7 +96,6 @@ Education
 .. |year| date:: %Y
 .. |time| date:: %H:%M
 .. |---| unicode:: U+2014
-.. _connormckelvey.com: https://connormckelvey.com
-.. _connormckelvey@gmail.com: mailto:connormckelvey@gmail.com
-.. _github.com/connormckelvey: https://github.com/connormckelvey
+.. _website: http://connormckelvey.com
+.. _github: https://github.com/connormckelvey
 .. _ably.io: https://ably.io

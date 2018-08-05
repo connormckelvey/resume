@@ -1,6 +1,6 @@
 
 .. role:: description(strong)
 
-.. role:: organization(strong)
+.. role:: organization(emphasis)
 
 .. role:: location
