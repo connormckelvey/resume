@@ -1,13 +1,13 @@
 .PHONY: bootstrap clean resume open
 .DEFAULT_GOAL := dist
 
-dist/RESUME.html:
-	@rst2html5.py RESUME.rst dist/RESUME.html
+dist/Connor_McKelvey__Resume.html:
+	@rst2html5.py README.rst dist/Connor_McKelvey__Resume.html
 
-dist: bootstrap dist/RESUME.html
+dist: bootstrap dist/Connor_McKelvey__Resume.html
 
 open:
-	@open dist/RESUME.html
+	@open dist/Connor_McKelvey__Resume.html
 
 resume: dist open
 
