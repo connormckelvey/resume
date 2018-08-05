@@ -5,8 +5,9 @@ Connor McKelvey
           850-217-5880
 :Email: connormckelvey@gmail.com
 :Website: `connormckelvey.com`_
-:Github:  `github.com/connormckelvey`_
+:Github: `@connormckelvey`_
 :Updated: |date|
+:Copyright: |copy| |year|, Connor McKelvey
 
 -----
 
@@ -21,14 +22,14 @@ Skills
 ------
 
 **Languages and Libraries**
-  | Javascript/NodeJS, Elixir, Clojure, Python, Go, Ruby, Lua 
-  | React, Electron, Rails, Phoenix, Rails, OpenResty
+  | Javascript, Elixir, Clojure, Python, Go, Ruby, Lua 
+  | NodeJS, React, Rails, Phoenix, Rails, OpenResty
 
 **Practices**
   | Agile Development, Automated Testing, CI/CD 
 
 **Platforms and Infrastructure**
-  | GCP (Firebase, Pub/Sub, GKE), AWS (ECS, Lambda, S3) 
+  | AWS: ECS, Lambda, S3; GCP: Firebase, Pub/Sub, GKE
   | Docker, Openshift, Kubernetes, Prometheus
 
 **Tools**
@@ -82,10 +83,6 @@ Education
   * Active in Amnesty International and Knight's Advocates
   * Volunteered with UCF Victims Services and Harbor House of Central Florida
 
------
-
-Copyright |copy| |year|, Connor McKelvey
-
 
 .. meta::
    :description: Connor McKelvey's Software Engineering Resume
@@ -99,5 +96,5 @@ Copyright |copy| |year|, Connor McKelvey
 .. |---| unicode:: U+2014
 
 .. _connormckelvey.com: http://connormckelvey.com
-.. _github.com/connormckelvey: https://github.com/connormckelvey
+.. _@connormckelvey: https://github.com/connormckelvey
 .. _ably.io: https://ably.io

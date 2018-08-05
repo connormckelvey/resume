@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 /* General */
 
@@ -6,6 +7,11 @@ html, body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 10pt;
+  padding: 0;
+}
+
+body {
+  padding: 0.25in;
 }
 
 dl:not(.docinfo) {
@@ -16,7 +22,6 @@ dd {
   -webkit-margin-start: 0;
 }
 
-
 /* Document */
 
 div.document {
@@ -25,12 +30,40 @@ div.document {
 
 div.document hr {
   width: 100%;
+  border: solid 2pt #EBEBEB;
 }
 
-dl.docinfo > dt.address, dl.docinfo > .updated {
+/* Headings */
+
+h1.title {
+  text-align: left;
+}
+
+h1:not(.title) {
+  font-size: 1.4em
+}
+
+.section h1 {
+  font-weight: 100;
+}
+
+/* DocInfo */
+
+dl.field-list > dt:after, 
+dl.docinfo > dt:after {
+  display: none;
+}
+
+dl.docinfo > dt.address, 
+dl.docinfo > .updated, 
+dl.docinfo > .copyright  {
   position: absolute;
   top: -9999999999px;
   margin: 0;
+}
+
+dl.docinfo > dd.copyright {
+  bottom: 0;
 }
 
 dl.docinfo > dd {
@@ -48,41 +81,70 @@ dl.docinfo dd.address pre {
   margin: 0;
 }
 
-dl.docinfo {
-  columns: 1;
+dl.docinfo dt {
+  position: absolute;
+  top: -9999999999px; 
 }
 
 @media (min-width: 600px) {
   dl.docinfo {
-      columns: 3
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
   }
 
-  dl.docinfo dt {
-    float: none;
-    clear: none;
-  }
-
-  dl.docinfo > dt, dl.docinfo > dd {
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
+  dl.docinfo dd {
+    margin-right: 1em;
   }
 }
 
-h1.title {
-  text-align: left;
+dl.docinfo > dd {
+  vertical-align: middle;
 }
 
-h1:not(.title) {
-  font-size: 1.4em
+dl.docinfo > dd::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "FontAwesome";
+  font-size: 12pt;
+  font-weight: 500;
+  margin-right: 0.5em;
 }
+
+dl.docinfo > dd p {
+  display: inline;
+}
+
+dl.docinfo > dd.email::before {
+  content: "\f0e0";
+  font-size: 10pt;
+}
+
+dl.docinfo > dd.website::before {
+  content: "\f015";
+}
+
+dl.docinfo > dd.github::before {
+  content: "\f09b";
+}
+
 
 /* Experience Section */
+
 
 #experience dt, #education dt {
   position: absolute;
   right: 0;
-  transform: translateY(100%);
+  font-style: italic;
+}
+
+@media (min-width: 600px) {
+  #experience dt, #education dt {    
+    transform: translateY(100%);
+  }
 }
 
 /* Skills Section */
@@ -106,6 +168,13 @@ h1:not(.title) {
 }
 
 /* Printer Styles */
+
+@media only print {
+  body {
+    padding: 0.25in 0;
+    max-width: none;
+  }
+}
 
 @page { 
     size: auto;

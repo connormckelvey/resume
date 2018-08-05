@@ -12,6 +12,10 @@ open:
 
 resume: dist open
 
+dev:
+	@rst2html5.py --stylesheet=minimal.css,plain.css,../resume.css --link-stylesheet README.rst dist/Dev-Connor_McKelvey__Resume.html
+	@open dist/Dev-Connor_McKelvey__Resume.html
+
 clean:
 	@find dist/ -type f -maxdepth 1 -delete
 
