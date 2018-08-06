@@ -7,7 +7,7 @@ web: dist/Connor_McKelvey__Resume.html
 pdf: dist/Connor_McKelvey__Resume.pdf
 	@open $<
 
-dist/Connor_McKelvey__Resume.html: README.rst requirements dist/ dist/main.css
+dist/Connor_McKelvey__Resume.html: RESUME.rst requirements dist/ dist/main.css
 	@rst2html5.py -v --stylesheet=minimal.css,plain.css,dist/main.css $< $@
 
 dist/Connor_McKelvey__Resume.pdf: dist/Connor_McKelvey__Resume.html
