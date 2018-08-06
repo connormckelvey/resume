@@ -1,0 +1,39 @@
+/* Sections */
+
+@mixin section-date() {
+  position: absolute;
+  right: 0;
+  font-style: italic;
+
+  @media (min-width: 600px) {
+    transform: translateY(100%);
+  }
+}
+
+.section {
+  h1 {
+    font-size: 1.4em;
+    font-weight: 100;
+  }
+  dl {
+    position: relative;
+  }
+}
+
+#experience dt, #education dt {
+  @include section-date()
+}
+
+#skills {
+  
+
+  dl {
+    @media (min-width: 600px) {
+      columns: 2
+    }
+    
+    & > dt, & > dd {
+      break-inside: avoid
+    }
+  }
+}
