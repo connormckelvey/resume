@@ -30,13 +30,16 @@ jobs:
               -r ${CIRCLE_PROJECT_REPONAME} \
               -c ${CIRCLE_SHA1} \
               -delete ${CIRCLE_TAG} 
-              /tmp/dist
+              ./dist
 
 workflows:
   version: 2
   build_and_release:
     jobs:
-      - build_resume
+      - build_resume:
+          filters:
+            tags:
+              only: /.*/
       - release_resume:
           requires:
             - build_resume
@@ -44,4 +47,4 @@ workflows:
             tags:
               only: /v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/
             branches:
-              only: master
+              ignore: /.*/
