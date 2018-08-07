@@ -10,7 +10,7 @@ jobs:
           name: Build Resume
           command: make dockerartifacts
       - persist_to_workspace:
-          root: /tmp/dist
+          root: ~/resume
           paths:
             - dist/*
 
@@ -20,7 +20,7 @@ jobs:
     working_directory: ~/resume
     steps: 
       - attach_workspace:
-          at: /tmp/dist
+          at: ~/resume
       - run: 
           name: Release Resume
           command: | 
