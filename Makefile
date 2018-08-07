@@ -50,7 +50,6 @@ requirements.log: requirements.txt
 
 dockerclean:
 	@git clean -fX
-	@docker rm resume || true
 
 dockerpull:
 	@docker pull $(DOCKER_IMAGE):latest || true
@@ -64,5 +63,5 @@ dockerlogin:
 	@echo $(DOCKER_HUB_PASSWORD) | docker login -u $(DOCKER_HUB_USERNAME) --password-stdin
 
 dockerartifacts: dockerimage dockerclean
-	@docker run -v "$(PWD):/resume" --name resume $(DOCKER_IMAGE):$(DOCKER_TAG)
+	@docker run -v "$(PWD):/resume" $(DOCKER_IMAGE):$(DOCKER_TAG)
 	@echo artifacts copied to $(BUILD_DIR)
