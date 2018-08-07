@@ -1,0 +1,19 @@
+version: 2.0
+jobs:
+  build_resume:
+    docker:
+      - image: python:2.7.15-stretch-browsers
+    working_directory: ~/resume
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: 
+          name: Make it
+          command: make
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build_resume
