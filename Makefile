@@ -19,20 +19,24 @@ pdf: $(RESUME_PDF)
 $(RESUME_HTML): requirements $(RESUME_SRC) $(BUILD_DIR) $(CSS_MAIN)
 	@rst2html5.py --stylesheet=minimal.css,plain.css,$(CSS_MAIN) \
 		$(RESUME_SRC) $(RESUME_HTML)
+	@echo built $(RESUME_HTML)
 
-$(RESUME_PDF): $(RESUME_HTML)
-	@/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --headless \
-		 --virtual-time-budget=10000 --print-to-pdf=$(RESUME_PDF) $(RESUME_HTML)
+$(RESUME_PDF): $(RESUME_HTML) bin/chrome
+	@bin/chrome --print-to-pdf=$(RESUME_PDF) $(RESUME_HTML)
+	@echo built $(RESUME_PDF)
 
 $(CSS_MAIN): requirements $(SCSS_MAIN)
 	@sassc -s compressed $(SCSS_MAIN) $(CSS_MAIN)
+	@echo built $(CSS_MAIN)
 
 $(BUILD_DIR):
 	@mkdir -p dist
+	@echo created $(BUILD_DIR) directory
 
 clean:
-	@find $(BUILD_DIR)/ -type f -maxdepth 1 -delete
+	find $(BUILD_DIR)/ -type f -maxdepth 1 -delete
 
 requirements: requirements.log
 requirements.log: requirements.txt
 	@pip install -r requirements.txt | tee requirements.log
+	@echo Installed Python requirements
