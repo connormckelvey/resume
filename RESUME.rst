@@ -11,9 +11,9 @@ Connor McKelvey
 
 -----
 
-Software engineer with experience designing, building, testing and deploying
-real-time cloud-based applications. Constantly looking to improve automation, 
-internal tooling, as well as customer and developer experience within a project.
+Full-Stack Engineer with experience designing, building, testing and deploying 
+real-time, cloud-based applications. Constantly looking to improve automation, 
+internal tooling, as well as customer and developer experience within a project. 
 Seeking an opportunity to solve challenging problems and contribute to customer 
 value within an agile, team of diverse and creative people.
 
