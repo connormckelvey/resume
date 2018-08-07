@@ -43,7 +43,7 @@ requirements.log: requirements.txt
 
 dockerclean:
 	@git clean -fX
-	@docker rm resume
+	@docker rm resume || true
 
 dockerimage: Dockerfile
 	@docker build -t resume .
