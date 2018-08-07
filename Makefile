@@ -7,7 +7,7 @@ RESUME_PDF = $(BUILD_DIR)/$(RESUME_NAME).pdf
 SCSS_MAIN = scss/main.scss
 CSS_MAIN = $(BUILD_DIR)/main.css
 
-.PHONY: clean requirements web pdf
+.PHONY: dockerimage dockercontainer dockerartifacts clean requirements web pdf
 .DEFAULT_GOAL := $(RESUME_PDF)
 
 html: $(RESUME_HTML)
@@ -39,4 +39,16 @@ clean:
 requirements: requirements.log
 requirements.log: requirements.txt
 	@pip install -r requirements.txt | tee requirements.log
-	@echo Installed Python requirements
+	@echo installed Python requirements
+
+dockerclean:
+	@git clean -fX
+	@docker rm resume
+
+dockerimage: Dockerfile
+	@docker build -t resume .
+	@echo built docker image
+
+dockerartifacts: dockerimage dockerclean
+	@docker run -v "$(PWD):/resume" --name resume resume
+	@echo artifacts copied to $(BUILD_DIR)

@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   build_resume:
     docker:
-      - image: circleci/python:2.7.15-stretch-browsers
+      - image: circleci/golang:1.10
     working_directory: ~/resume
     steps:
       - checkout
@@ -10,10 +10,40 @@ jobs:
           docker_layer_caching: true
       - run: 
           name: Build Resume
-          command: docker build -t artifacts .
+          command: make dockerartifacts
+      - persist_to_workspace:
+          root: /tmp/dist
+          paths:
+            - dist/*
+
+  release_resume:
+    docker: 
+      - image: circleci/golang:1.10
+    working_directory: ~/resume
+    steps: 
+      - attach_workspace:
+          at: /tmp/dist
+      - run: 
+          name: Release Resume
+          command: | 
+            go get -u github.com/tcnksm/ghr
+            ghr -t ${GITHUB_TOKEN} \
+              -u ${CIRCLE_PROJECT_USERNAME} \
+              -r ${CIRCLE_PROJECT_REPONAME} \
+              -c ${CIRCLE_SHA1} \
+              -delete ${CIRCLE_TAG} 
+              /tmp/dist
 
 workflows:
   version: 2
-  commit:
+  build_and_release:
     jobs:
       - build_resume
+      - release_resume:
+          requires:
+            - build_resume
+          filters:
+            tags:
+              only: /v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/
+            branches:
+              only: master
