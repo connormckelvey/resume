@@ -1,14 +1,8 @@
 FROM python:2.7.15-slim-stretch
 
-ENV CHROME_DEB=google-chrome-stable_current_amd64.deb
-ENV CHROME_DL=https://dl.google.com/linux/direct/${CHROME_DEB}
-
-RUN apt-get update && \ 
-      apt-get install -y make wget
-
-RUN wget ${CHROME_DL} && \
-      dpkg -i ${CHROME_DEB}; \
-      apt-get -fy install
+RUN apt-get -qq update && \ 
+    apt-get -qq install -y --no-install-recommends make chromium && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /resume
 CMD make

@@ -7,7 +7,14 @@ RESUME_PDF = $(BUILD_DIR)/$(RESUME_NAME).pdf
 SCSS_MAIN = scss/main.scss
 CSS_MAIN = $(BUILD_DIR)/main.css
 
-.PHONY: dockerimage dockercontainer dockerartifacts clean requirements web pdf
+DOCKER_IMAGE = connormckelvey/resume
+ifeq ($(CIRCLE_BRANCH),master)
+    DOCKER_TAG=latest    
+else
+    DOCKER_TAG=dev
+endif
+
+.PHONY: clean requirements web pdf
 .DEFAULT_GOAL := $(RESUME_PDF)
 
 html: $(RESUME_HTML)
@@ -45,10 +52,17 @@ dockerclean:
 	@git clean -fX
 	@docker rm resume || true
 
-dockerimage: Dockerfile
-	@docker build -t resume .
+dockerpull:
+	@docker pull $(DOCKER_IMAGE):latest || true
+
+dockerimage: Dockerfile dockerpull dockerlogin
+	@docker build -t $(DOCKER_IMAGE):$(DOCKER_TAG) --cache-from $(DOCKER_IMAGE):latest .	
+	@docker push $(DOCKER_IMAGE):$(DOCKER_TAG)
 	@echo built docker image
 
+dockerlogin:
+	@echo $(DOCKER_HUB_PASSWORD) | docker login -u $(DOCKER_HUB_USERNAME) --password-stdin
+
 dockerartifacts: dockerimage dockerclean
-	@docker run -v "$(PWD):/resume" --name resume resume
+	@docker run -v "$(PWD):/resume" --name resume $(DOCKER_IMAGE):$(DOCKER_TAG)
 	@echo artifacts copied to $(BUILD_DIR)
