@@ -14,7 +14,8 @@ else
     DOCKER_TAG=dev
 endif
 
-.PHONY: clean requirements web pdf
+.PHONY: clean requirements web pdf dockerclean dockerlogin dockerpull \
+					dockerimage dockerartifacts
 .DEFAULT_GOAL := $(RESUME_PDF)
 
 html: $(RESUME_HTML)
