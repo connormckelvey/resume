@@ -64,5 +64,5 @@ dockerlogin:
 	@echo $(DOCKER_HUB_PASSWORD) | docker login -u $(DOCKER_HUB_USERNAME) --password-stdin
 
 dockerartifacts: dockerimage dockerclean
-	docker run -v "$(PWD):/resume" $(DOCKER_IMAGE):$(DOCKER_TAG) make requirements
+	docker run -v "$(PWD):/resume" $(DOCKER_IMAGE):$(DOCKER_TAG) ls -la /resume
 	@echo artifacts copied to $(BUILD_DIR)
