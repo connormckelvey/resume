@@ -50,7 +50,7 @@ requirements.log: requirements.txt
 	@echo installed Python requirements
 
 dockerclean:
-	@git clean -fX
+	@git clean -fdX
 
 dockerpull:
 	@docker pull $(DOCKER_IMAGE):latest || true
