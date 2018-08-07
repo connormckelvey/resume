@@ -38,5 +38,5 @@ clean:
 
 requirements: requirements.log
 requirements.log: requirements.txt
-	@pip install --user -r requirements.txt | tee requirements.log
+	@pip install -r requirements.txt | tee requirements.log
 	@echo Installed Python requirements

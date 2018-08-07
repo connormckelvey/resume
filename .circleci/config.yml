@@ -9,8 +9,8 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run: 
-          name: Make it
-          command: make
+          name: Build Resume
+          command: docker build -t artifacts .
 
 workflows:
   version: 2
