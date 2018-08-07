@@ -6,16 +6,7 @@ darwin_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 chrome() {
   eval "local chrome_cmd=\$${os}_chrome"
-  eval "$chrome_cmd --headless --virtual-time-budget=10000 $@"
+  eval "$chrome_cmd --headless --virtual-time-budget=10000 --no-sandbox $@"
 }
 
-main() {  
-  options="$@"
-  if [ "root" = "$USER" ] ; then
-    options="--no-sandbox $@"
-  fi
-
-  chrome "$options"
-}
-
-main "$@"
+chrome "$@"

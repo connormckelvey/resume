@@ -22,7 +22,7 @@ $(RESUME_HTML): requirements $(RESUME_SRC) $(BUILD_DIR) $(CSS_MAIN)
 	@echo built $(RESUME_HTML)
 
 $(RESUME_PDF): $(RESUME_HTML) bin/chrome
-	@bin/chrome --print-to-pdf=$(RESUME_PDF) $(RESUME_HTML)
+	bin/chrome --print-to-pdf=$(RESUME_PDF) $(RESUME_HTML)
 	@echo built $(RESUME_PDF)
 
 $(CSS_MAIN): requirements $(SCSS_MAIN)
