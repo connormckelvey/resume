@@ -74,7 +74,6 @@ HTML and PDF résumé documents are automatically built on every commit using
 are uploaded to this project's [Releases](https://github.com/connormckelvey/resume/releases) 
 page.
 
-
 ## Built With
 
 - [Docutils](http://docutils.sourceforge.net/) - reStructuredText to HTML conversion
@@ -87,7 +86,6 @@ page.
 
 This project is not a library and is purpose built for my needs, feel free to 
 fork this repository and adapt it for your own. This project is licensed under 
-the MIT License - see the LICENSE.txt file for details.
-
+the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
 [Specifying a Chrome Path]: #specifying-a-chrome-path
