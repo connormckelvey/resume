@@ -4,9 +4,9 @@
 
 This project builds my personal résumé as HTML and PDF documents from 
 reStructuredText. Download the latest build of my résumé from [releases](https://github.com/connormckelvey/resume/releases/latest), or see 
-[below](#building) for instructions on building from source.
+[below](#getting-started) for instructions on building from source.
 
-## Building
+## Getting Started
 
 These instructions will get you a copy of this project setup on your local 
 machine for development and building purposes. 
@@ -20,7 +20,7 @@ machine for development and building purposes.
 
 - Python 2.7 and Pip
 - Make
-- Google Chrome (If using Chromium see [Specifying a Chrome Path])
+- Google Chrome (If using Chromium, see [Specifying a Chrome Path])
 
 ### Steps
 
@@ -51,14 +51,15 @@ machine for development and building purposes.
 
 ### Environment Variables
 
-These environment variables are used with the Makefile and the bin/chrome script: 
+These environment variables are used within the Makefile and the bin/chrome 
+script: 
 
 - `BUILD_DIR` - Directory for built résumés. Default: `dist`
 - `RESUME_NAME` - File name (without extension) used for built résumés. Default: `Connor_McKelvey__Resume`
 - `RESUME_SRC` - Résumé source file (must be reStructuredText). Default: `RESUME.rst`
 - `CHROME_PATH` - Path to Chrome executable. Default depends on platform. See [Specifying a Chrome Path].
 
-### Specifying a Chrome Path
+#### Specifying a Chrome Path
 
 If [bin/chrome](bin/chrome) does not correctly identify the Chrome executable 
 for your platform or if you would like to use [Chromium](https://www.chromium.org/) 
