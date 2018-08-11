@@ -1,4 +1,4 @@
-FROM python:2.7.15-slim-stretch
+FROM circleci/pyhthon:2.7.15-stretch-browsers
 
 RUN apt-get -qq update && \ 
     apt-get -qq install -y --no-install-recommends make chromium && \

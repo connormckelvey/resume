@@ -1,21 +1,21 @@
 version: 2.0
 jobs:
   build_resume:
-    machine:
-      docker_layer_caching: true      
+    docker:
+      - image: circleci/python:2.7.15-stretch-browsers
     working_directory: ~/resume
     steps:
       - checkout
       - run: 
           name: Build Resume
-          command: make dockerartifacts
+          command: make
       - persist_to_workspace:
           root: ~/resume
           paths:
             - dist/*
 
   release_resume:
-    docker: 
+    docker:
       - image: circleci/golang:1.10
     working_directory: ~/resume
     steps: 
