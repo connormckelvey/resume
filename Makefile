@@ -1,6 +1,6 @@
-BUILD_DIR = dist
-RESUME_NAME = Connor_McKelvey__Resume
-RESUME_SRC = RESUME.rst
+BUILD_DIR ?= dist
+RESUME_NAME ?= Connor_McKelvey__Resume
+RESUME_SRC ?= RESUME.rst
 RESUME_HTML = $(BUILD_DIR)/$(RESUME_NAME).html
 RESUME_PDF = $(BUILD_DIR)/$(RESUME_NAME).pdf
 
@@ -30,7 +30,7 @@ $(CSS_MAIN): requirements $(SCSS_MAIN)
 	@echo built $(CSS_MAIN)
 
 $(BUILD_DIR):
-	@mkdir -p dist
+	@mkdir -p $(BUILD_DIR)
 	@echo created $(BUILD_DIR) directory
 
 clean:

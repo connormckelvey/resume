@@ -5,8 +5,10 @@ linux_chrome="google-chrome-stable"
 darwin_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 chrome() {
-  eval "local chrome_cmd=\$${os}_chrome"
-  eval "$chrome_cmd --headless --virtual-time-budget=10000 --no-sandbox $@"
+  eval "local default_chrome_path=\$${os}_chrome"
+  local chrome_path=${CHROME_PATH:-$default_chrome_path}
+  
+  eval "$chrome_path --headless --virtual-time-budget=10000 --no-sandbox $@"
 }
 
 chrome "$@"
