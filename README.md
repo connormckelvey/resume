@@ -24,22 +24,34 @@ machine for development and building purposes.
 
 ### Steps
 
-1. `git clone https://github.com/connormckelvey/resume.git`
-2. `cd resume`
-3. `make`
-4. `ls -la dist`
+1. Clone the Repository 
+    ```
+    $ git clone https://github.com/connormckelvey/resume.git
+    ```
+2. Change directories 
+    ```
+    $ cd resume
+    ```
+3. Install dependencies and build résumé documents
+    ```
+    $ make
+    ```
+4. Should built résumé documents
+    ```
+    $ ls -la dist
+    ```
 
 ### Additional Make Targets
 
-- `make` - Generates both HTML and PDF documents output to `$BUILD_DIR`
-- `make html` - Generates HTML document and opens it for viewing
-- `make pdf` - Generates both HTML and PDF documents and opens PDF for viewing 
-- `make requirements` - Installs Python requirements from requirements.txt
-- `make clean` - Removes all untracked/ignored files
+- `make` - Generate HTML and PDF documents output to `$BUILD_DIR`
+- `make html` - Generate HTML document and open HTML for viewing
+- `make pdf` - Generate both HTML and PDF documents and open PDF for viewing 
+- `make requirements` - Install Python requirements from requirements.txt
+- `make clean` - Remove all untracked/ignored files (including `dist`)
 
 ### Environment Variables
 
-These environemnt variables are used with the Makefile and the bin/chrome script. 
+These environment variables are used with the Makefile and the bin/chrome script: 
 
 - `BUILD_DIR` - Directory for built résumés. Default: `dist`
 - `RESUME_NAME` - File name (without extension) used for built résumés. Default: `Connor_McKelvey__Resume`
