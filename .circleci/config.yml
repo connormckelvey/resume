@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: 
           name: Build Resume
-          command: make
+          command: sudo make
       - persist_to_workspace:
           root: ~/resume
           paths:
