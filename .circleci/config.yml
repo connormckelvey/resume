@@ -8,7 +8,9 @@ jobs:
       - checkout
       - run: 
           name: Build Resume
-          command: sudo make requirements && make
+          command: | 
+            sudo make requirements
+            make            
       - persist_to_workspace:
           root: ~/resume
           paths:
@@ -24,6 +26,7 @@ jobs:
       - run: 
           name: Release Resume
           command: | 
+            rm dist/main.css
             go get -u github.com/tcnksm/ghr
             ghr -t ${GITHUB_TOKEN} \
               -u ${CIRCLE_PROJECT_USERNAME} \
