@@ -34,6 +34,12 @@ jobs:
               -c ${CIRCLE_SHA1} \
               -delete ${CIRCLE_TAG} \
               ./dist
+      - run:
+          name: Deploy to Website
+          command: |
+            sudo apt-get update && sudo apt-get install -y awscli
+            aws s3 cp dist/Connor_McKelvey__Resume.html \ 
+              s3://www.connormckelvey.com/resume.html --acl public-read
 
 workflows:
   version: 2
