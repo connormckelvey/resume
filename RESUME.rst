@@ -21,7 +21,7 @@ Employment
   * Improved developer experience with custom tooling for doc generation and secret decryption
   * Developed an Cron-based system for backing up Grafana Dashboards to Github or AWS S3
   * Gave educational presentations to team members on topic like JS Promises, Bash, and Golang
-  * *Technologies used: Kafka, Kuberenetes, Clojure, Typescript, Rails, Python, and Go*
+  * *Technologies used: Kafka, Kubernetes, Clojure, Typescript, Rails, Python, and Go*
       
 2016 - 2017
   | **Associate Software Engineer**
@@ -89,7 +89,7 @@ Projects
 .. meta::
    :description: Connor McKelvey's Software Engineering Resume
    :keywords: software, engineering, development, cloud-native, cloud-based,
-      real-time, big data, kuberenetes, docker
+      real-time, big data, Kubernetes, docker
 
 .. |copy| unicode:: 0xA9
 .. |date| date::
