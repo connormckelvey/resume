@@ -21,6 +21,7 @@ machine for development and building purposes.
 - Python 2.7 and Pip
 - Make
 - Google Chrome (If using Chromium, see [Specifying a Chrome Path])
+- Aspell
 
 ### Steps
 
@@ -90,7 +91,6 @@ the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## TODO
 
-- Automated spell-checking with Aspell or Hunspell
 - Automated layout testing using Galen Framework
 
 [Specifying a Chrome Path]: #specifying-a-chrome-path

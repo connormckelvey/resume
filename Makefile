@@ -7,14 +7,17 @@ RESUME_PDF = $(BUILD_DIR)/$(RESUME_NAME).pdf
 SCSS_MAIN = scss/main.scss
 CSS_MAIN = $(BUILD_DIR)/main.css
 
-.PHONY: clean requirements html pdf
+.PHONY: clean requirements html pdf spellcheck
 .DEFAULT_GOAL := $(RESUME_PDF)
 
-html: $(RESUME_HTML)
+html: $(RESUME_HTML) spellcheck
 	@open $<
 
 pdf: $(RESUME_PDF)
 	@open $<
+
+spellcheck: $(RESUME_HTML)
+	bin/spellcheck $(RESUME_HTML) -H
 
 $(RESUME_HTML): requirements $(RESUME_SRC) $(BUILD_DIR) $(CSS_MAIN)
 	@rst2html5.py --stylesheet=minimal.css,plain.css,$(CSS_MAIN) \

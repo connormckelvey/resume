@@ -11,6 +11,11 @@ jobs:
           command: | 
             sudo make requirements
             make            
+      - run:
+          name: Spellcheck Resume
+          command: |
+            sudo apt-get update && sudo apt-get install -y aspell
+            make spellcheck
       - persist_to_workspace:
           root: ~/resume
           paths:
