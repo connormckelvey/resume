@@ -9,68 +9,45 @@ Connor McKelvey
 :Updated: |date|
 :Copyright: |copy| |year|, Connor McKelvey
 
------
-
-Full-Stack Engineer with experience designing, building, testing and deploying 
-real-time, cloud-based applications. Constantly looking to improve automation, 
-internal tooling, as well as customer and developer experience within a project. 
-Seeking an opportunity to solve challenging problems and contribute to customer 
-value within an agile, team of diverse and creative people.
-
-
-Skills
-------
-
-**Languages and Libraries**
-  | Javascript, Elixir, Clojure, Python, Go, Ruby, Lua 
-  | NodeJS, React, Rails, Phoenix, Rails, OpenResty
-
-**Practices**
-  | Agile Development, Automated Testing, CI/CD 
-
-**Platforms and Infrastructure**
-  | AWS: ECS, Lambda, S3; GCP: Firebase, Pub/Sub, GKE
-  | Docker, Openshift, Kubernetes, Prometheus
-
-**Tools**
-  | Bash, Make, RST, Webpack, Helm, Minikube, Grafana
-
-Experience
+Employment
 ----------
 
 2017 - Present
   | **Software Engineer**
   | *CA Technologies* |---| Boulder, CO
 
-  * Working with multiple cross-functional teams to build and maintain a Business Intelligence Pipeline
-  * Using technologies like: Kafka, Kuberenetes, Clojure, Typescript, Rails, and Lua
-  * Creating command line tools (in Python and Go) used in doc generation and secret decryption
-  * Giving educational presentations on Promises, Bash, and Golang. Mentoring and pairing with junior engineers
+  * Worked with multiple teams to build and maintain a BI Data Pipeline for SaaS and On-Prem Products
+  * Reduced frequency of vulnerabilities in Docker images with a Cron-based "base image" build system
+  * Improved developer experience with custom tooling for doc generation and secret decryption
+  * Developed an Cron-based system for backing up Grafana Dashboards to Github or AWS S3
+  * Gave educational presentations to team members on topic like JS Promises, Bash, and Golang
+  * *Technologies used: Kafka, Kuberenetes, Clojure, Typescript, Rails, Python, and Go*
       
 2016 - 2017
   | **Associate Software Engineer**
   | *CA Technologies* |---| Boulder, CO
 
   * Worked within a cross-functional team to develop a real-time task management tool
-  * Used technologies like: ably.io_, Typescript, React, Node.JS and PostgresQL    
+  * Reduced risks of rendering untrusted HTML emails in-browser with "sandboxed" React component
+  * Solved screen real-estate issues for horizontal menus with a responsive React component
+  * *Technologies used: WebSockets, Typescript, React, Node.JS and PostgresQL*
 
 2014 - 2016
   | **Web Developer**
   | *Findsome & Winmore* |---| Orlando, FL
 
-  * Collaborated with designers and other developers on internal and client based websites and applications
-  * Used technologies like: Wordpress, Node, Rails, Angular, and React
+  * Collaborated with designers and other developers on retail websites and applications
   * Worked with stakeholders to plan and estimate the cost client projects
-  * Transitioned development to to git from svn for easier collaboration
+  * Transitioned development team from SVN to Git for easier collaboration
+  * *Technologies used: Wordpress, Node, Rails, Angular, and React*
 
 2012 - 2014
   | **Web Developer**
   | *The Storage Group* |---| Maitland, FL
 
-  * Worked with project managers to plan, design, and build client websites and applications
-  * Used technologies like: Wordpress, PHP, HTML, CSS, and Javascript
+  * Worked with project managers to plan, design, and build client websites and applications  
   * Performed Search Engine Optimization audits and updates on dozens of client websites
-
+  * *Technologies used: Wordpress, PHP, HTML, CSS, and Javascript*
 
 Education
 ---------
@@ -83,6 +60,31 @@ Education
   * Active in Amnesty International and Knight's Advocates
   * Volunteered with UCF Victims Services and Harbor House of Central Florida
 
+
+Experience
+----------
+
+**Languages and Libraries**
+  | Javascript, Elixir, Clojure, Python, Go, Ruby, Lua 
+  | NodeJS, React, OTP, Phoenix, Rails, OpenResty
+
+**Platforms and Infrastructure**
+  | AWS: ECS, Lambda, S3; GCP: Firebase, Pub/Sub, GKE
+  | Docker, Openshift, Kubernetes, Prometheus, Kafka
+
+Projects
+--------
+
+**Tildev**
+   Wordpress platform and development environment service. User's can 
+   create a Wordpress stack in seconds and edit site files locally: Firebase, 
+   Kubernetes, PubSub, Electron, React, Typescript
+
+
+**Major7** 
+   Peer-to-peer encrypted messaging application based on the Chord Distributed
+   Hash Table. Users can send messages to others who may be online or offline:
+   Elixir, Erlang/OTP, DETS.
 
 .. meta::
    :description: Connor McKelvey's Software Engineering Resume

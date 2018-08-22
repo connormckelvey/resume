@@ -20,11 +20,11 @@
   }
 }
 
-#experience dt, #education dt {
+#employment dt, #education dt {
   @include section-date()
 }
 
-#skills {
+#experience {
   dl {
     @media (min-width: 600px) {
       columns: 2
@@ -32,6 +32,18 @@
     
     & > dt, & > dd {
       break-inside: avoid
+    }
+  }
+}
+
+#projects {
+  dl {
+    & > dt {
+      float: left;
+      margin-right: 0.5em;
+    }
+    & > dd {
+      margin-bottom: 0.5em;
     }
   }
 }
