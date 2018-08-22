@@ -55,7 +55,7 @@ These environment variables are used within the Makefile and the bin/chrome
 script: 
 
 - `BUILD_DIR` - Directory for built résumés. Default: `dist`
-- `RESUME_NAME` - File name (without extension) used for built résumés. Default: `Connor_McKelvey__Resume`
+- `RESUME_NAME` - Filename (without extension) used for built résumés. Default: `Connor_McKelvey__Resume`
 - `RESUME_SRC` - Résumé source file (must be reStructuredText). Default: `RESUME.rst`
 - `CHROME_PATH` - Path to Chrome executable. Default depends on platform. See [Specifying a Chrome Path].
 
