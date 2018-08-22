@@ -88,4 +88,9 @@ This project is not a library and is purpose built for my needs, feel free to
 fork this repository and adapt it for your own. This project is licensed under 
 the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
+## TODO
+
+- Automated spell-checking with Aspell or Hunspell
+- Automated layout testing using Galen Framework
+
 [Specifying a Chrome Path]: #specifying-a-chrome-path
