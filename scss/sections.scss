@@ -20,6 +20,12 @@
   }
 }
 
+.section:not(#experience) {
+  dd:not(:last-child) {
+    margin-bottom: 0.85em;
+  }  
+}
+
 #employment dt, #education dt {
   @include section-date()
 }
