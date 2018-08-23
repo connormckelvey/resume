@@ -17,7 +17,7 @@ Employment
   | *CA Technologies* |---| Boulder, CO
 
   * Worked with multiple teams to build and maintain a BI Data Pipeline for SaaS and On-Prem Products
-  * Reduced frequency of vulnerabilities in Docker images with a Cron-based "base image" build system
+  * Reduced frequency of vulnerabilities in Docker images with Cron-based "base image" build system
   * Improved developer experience with custom tooling for doc generation and secret decryption
   * Developed an Cron-based system for backing up Grafana Dashboards to Github or AWS S3
   * Gave educational presentations to team members on topic like JS Promises, Bash, and Golang
@@ -29,7 +29,7 @@ Employment
 
   * Worked within a cross-functional team to develop a real-time task management tool
   * Reduced risks of rendering untrusted HTML emails in-browser with "sandboxed" React component
-  * Solved screen real-estate issues for horizontal menus with a responsive React component
+  * Solved screen real-estate issues for horizontal menus with responsive React component
   * *Technologies used: WebSockets, Typescript, React, Node.JS and PostgresQL*
 
 2014 - 2016

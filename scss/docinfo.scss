@@ -15,6 +15,10 @@
 }
 
 dl.docinfo {
+  a {
+    color: #2980b9;
+  }
+
   & > dt:after {
     display: none;
   }
@@ -39,7 +43,10 @@ dl.docinfo {
     }
 
     @media (min-width: 600px) {
-      margin-right: 1em;
+
+      :not(.address) {
+        margin-right: 1em;
+      }      
     }
   }
 
