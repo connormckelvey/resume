@@ -20,7 +20,7 @@ Employment
   * Reduced frequency of vulnerabilities in Docker images with a Cron-based "base image" build system
   * Improved developer experience with custom tooling for doc generation and secret decryption 
   * Developed a Cron-based system for backing up Grafana Dashboards to Github or AWS S3
-  * Gave educational presentations to team members on topic like JS Promises, Bash, and Golang 
+  * Gave educational presentations to team members on topics like JS Promises, Bash, and Golang 
   * *Technologies used: Kafka, Kubernetes, Clojure, Typescript, Rails, Python, and Go*
       
 2016 - 2017
