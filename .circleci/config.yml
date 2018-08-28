@@ -44,6 +44,7 @@ jobs:
           command: |
             sudo apt-get update && sudo apt-get install -y awscli
             aws s3 cp dist/Connor_McKelvey__Resume.html s3://www.connormckelvey.com/resume.html --acl public-read
+            aws s3 cp dist/Connor_McKelvey__Resume.pdf s3://www.connormckelvey.com/resume.pdf --acl public-read
 
 workflows:
   version: 2
