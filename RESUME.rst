@@ -19,11 +19,11 @@ Employment
   | Working with multiple teams to build and maintain a BI Data Pipeline for SaaS and On-Prem Products
   | *Technologies used: Kafka, Kubernetes, Clojure, Typescript, Rails, Python, and Go*
 
-  * Provided technical mentoring and on-boarding to 4 associate engineers across 2 physical locations
+  * Provided technical mentoring and onboarding to 4 associate engineers across 2 physical locations
   * Led technical phone screenings and on-site interviews for over 30 candidates resulting in 3 hires
   * Spearheaded release, licensing and team agreements for group's first open source project
   * Educated 5 teams across 3 locations on topics such as JS Promises, Bash, and Golang in regular COPs
-  * Organized 3 quarterly Hackathon kick-offs, cross-site demos and award ceremonies
+  * Organized 3 quarterly Hackathon kick-offs, cross-site demos, and award ceremonies
   * Reduced frequency of vulnerabilities in Docker images with a Cron-based "base image" build system
   * Improved developer experience with custom tooling for doc generation and secret decryption 
   * Developed a Cron-based system for backing up Grafana Dashboards to Github or AWS S3
