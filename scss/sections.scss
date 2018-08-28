@@ -18,6 +18,15 @@
   dl {
     position: relative;
   }
+
+  ul {
+    -webkit-padding-start: 1.25em;
+    -moz-padding-start: 1.25em;
+
+    li {
+      white-space: nowrap;
+    }
+  }
 }
 
 .section:not(#experience) {

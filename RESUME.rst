@@ -16,38 +16,37 @@ Employment
   | **Software Engineer**
   | *CA Technologies* |---| Boulder, CO
 
-  * Worked with multiple teams to build and maintain a BI Data Pipeline for SaaS and On-Prem Products
+  | Working with multiple teams to build and maintain a BI Data Pipeline for SaaS and On-Prem Products
+  | *Technologies used: Kafka, Kubernetes, Clojure, Typescript, Rails, Python, and Go*
+
+  * Provided technical mentoring and on-boarding to 4 associate engineers across 2 physical locations
+  * Led technical phone screenings and on-site interviews for over 30 candidates resulting in 3 hires
+  * Spearheaded release, licensing and team agreements for group's first open source project
+  * Educated 5 teams across 3 locations on topics such as JS Promises, Bash, and Golang in regular COPs
+  * Organized 3 quarterly Hackathon kick-offs, cross-site demos and award ceremonies
   * Reduced frequency of vulnerabilities in Docker images with a Cron-based "base image" build system
   * Improved developer experience with custom tooling for doc generation and secret decryption 
   * Developed a Cron-based system for backing up Grafana Dashboards to Github or AWS S3
-  * Gave educational presentations to team members on topics like JS Promises, Bash, and Golang 
-  * *Technologies used: Kafka, Kubernetes, Clojure, Typescript, Rails, Python, and Go*
       
 2016 - 2017
   | **Associate Software Engineer**
   | *CA Technologies* |---| Boulder, CO
 
-  * Worked within a cross-functional team to develop a real-time task management tool
+  | Developed a real-time productivity and task management tool within a cross-functional team
+  | *Technologies used: WebSockets, Typescript, React, Node.JS and PostgresQL*
+
   * Reduced risks of rendering untrusted HTML emails in-browser with a "sandboxed" React component
   * Solved screen real-estate issues for horizontal menus with a responsive React component
-  * *Technologies used: WebSockets, Typescript, React, Node.JS and PostgresQL*
 
 2014 - 2016
   | **Web Developer**
   | *Findsome & Winmore* |---| Orlando, FL
 
-  * Collaborated with designers and other developers on retail websites and applications
-  * Worked with stakeholders to plan and estimate the cost client projects
+  | Collaborated with designers and other developers on retail websites and applications
+  | *Technologies used: Wordpress, Node.JS, Rails, Angular, and React*
+
+  * Led discussions with stakeholders to plan and estimate the cost of client projects
   * Transitioned development team from SVN to Git for easier collaboration
-  * *Technologies used: Wordpress, Node, Rails, Angular, and React*
-
-2012 - 2014
-  | **Web Developer**
-  | *The Storage Group* |---| Maitland, FL
-
-  * Worked with project managers to plan, design, and build client websites and applications
-  * Performed Search Engine Optimization audits and updates on dozens of client websites
-  * *Technologies used: Wordpress, PHP, HTML, CSS, and Javascript*
 
 Education
 ---------
