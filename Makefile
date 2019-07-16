@@ -4,6 +4,8 @@ RESUME_SRC ?= RESUME.rst
 RESUME_HTML = $(BUILD_DIR)/$(RESUME_NAME).html
 RESUME_PDF = $(BUILD_DIR)/$(RESUME_NAME).pdf
 
+REQUIREMENTS_LOCK = requirements.lock
+
 SCSS_MAIN = scss/main.scss
 CSS_MAIN = $(BUILD_DIR)/main.css
 
@@ -17,29 +19,29 @@ pdf: $(RESUME_PDF)
 	@open $<
 
 spellcheck: $(RESUME_HTML)
-	bin/spellcheck $(RESUME_HTML) -H
+	bin/spellcheck $< -H
 
-$(RESUME_HTML): requirements $(RESUME_SRC) $(BUILD_DIR) $(CSS_MAIN)
+$(RESUME_HTML): $(RESUME_SRC) $(BUILD_DIR) $(CSS_MAIN) requirements
 	@rst2html5.py --stylesheet=minimal.css,plain.css,$(CSS_MAIN) \
-		$(RESUME_SRC) $(RESUME_HTML)
-	@echo built $(RESUME_HTML)
+		$< $@
+	@echo built $@
 
 $(RESUME_PDF): $(RESUME_HTML) bin/chrome
-	bin/chrome --print-to-pdf=$(RESUME_PDF) $(RESUME_HTML)
-	@echo built $(RESUME_PDF)
+	bin/chrome --print-to-pdf=$@ $<
+	@echo built $@
 
-$(CSS_MAIN): requirements $(SCSS_MAIN)
-	@sassc -s compressed $(SCSS_MAIN) $(CSS_MAIN)
-	@echo built $(CSS_MAIN)
+$(CSS_MAIN): $(SCSS_MAIN) requirements
+	@pysassc -s compressed $< $@
+	@echo built $@
 
 $(BUILD_DIR):
-	@mkdir -p $(BUILD_DIR)
-	@echo created $(BUILD_DIR) directory
+	@mkdir -p $@
+	@echo created $@ directory
 
 clean:
 	@git clean -fdX
 
-requirements: requirements.log
-requirements.log: requirements.txt
-	@pip install -r requirements.txt | tee requirements.log
+requirements: $(REQUIREMENTS_LOCK)
+$(REQUIREMENTS_LOCK): requirements.txt
+	@pip install --user -r $< && touch $@
 	@echo installed Python requirements
