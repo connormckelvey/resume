@@ -2,4 +2,4 @@
 
 export PATH="$HOME/.local/bin:$PATH"
 
-make && make html
+make
