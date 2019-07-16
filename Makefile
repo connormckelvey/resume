@@ -1,32 +1,28 @@
 BUILD_DIR ?= dist
-RESUME_NAME ?= Connor_McKelvey__Resume
-RESUME_SRC ?= RESUME.rst
-RESUME_HTML = $(BUILD_DIR)/$(RESUME_NAME).html
-RESUME_PDF = $(BUILD_DIR)/$(RESUME_NAME).pdf
+
+INPUTS = $(wildcard *.rst)
+OUTPUTS_HTML = $(addprefix $(BUILD_DIR)/, $(patsubst %.rst, %.html, $(INPUTS)))
+OUTPUTS_PDF = $(patsubst %.html, %.pdf, $(OUTPUTS_HTML))
 
 REQUIREMENTS_LOCK = requirements.lock
 
 SCSS_MAIN = scss/main.scss
 CSS_MAIN = $(BUILD_DIR)/main.css
 
-.PHONY: clean requirements html pdf spellcheck
-.DEFAULT_GOAL := $(RESUME_PDF)
+.PHONY: clean requirements all html
+.DEFAULT_GOAL := all
 
-html: $(RESUME_HTML) spellcheck
-	@open $<
+all: $(OUTPUTS_PDF)
 
-pdf: $(RESUME_PDF)
-	@open $<
-
-spellcheck: $(RESUME_HTML)
-	bin/spellcheck $< -H
-
-$(RESUME_HTML): $(RESUME_SRC) $(BUILD_DIR) $(CSS_MAIN) requirements
+$(OUTPUTS_HTML): $(BUILD_DIR)/%.html : %.rst $(BUILD_DIR) $(CSS_MAIN) requirements
 	@rst2html5.py --stylesheet=minimal.css,plain.css,$(CSS_MAIN) \
 		$< $@
 	@echo built $@
 
-$(RESUME_PDF): $(RESUME_HTML) bin/chrome
+html : $(OUTPUTS_HTML)
+	@for i in $*; do bin/aspellcheck $${i} -H; done;
+
+$(OUTPUTS_PDF): %.pdf : %.html bin/chrome
 	bin/chrome --print-to-pdf=$@ $<
 	@echo built $@
 
@@ -39,7 +35,7 @@ $(BUILD_DIR):
 	@echo created $@ directory
 
 clean:
-	@git clean -fdX
+	@$(RM) -rf dist/
 
 requirements: $(REQUIREMENTS_LOCK)
 $(REQUIREMENTS_LOCK): requirements.txt
