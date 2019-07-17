@@ -9,7 +9,7 @@ REQUIREMENTS_LOCK = requirements.lock
 SCSS_MAIN = scss/main.scss
 CSS_MAIN = $(BUILD_DIR)/main.css
 
-.PHONY: clean requirements all html
+.PHONY: clean requirements all htmlcheck
 .DEFAULT_GOAL := all
 
 all: $(OUTPUTS_PDF)
@@ -19,8 +19,8 @@ $(OUTPUTS_HTML): $(BUILD_DIR)/%.html : %.rst $(BUILD_DIR) $(CSS_MAIN) requiremen
 		$< $@
 	@echo built $@
 
-html : $(OUTPUTS_HTML)
-	@for i in $*; do bin/aspellcheck $${i} -H; done;
+htmlcheck : $(OUTPUTS_HTML)
+	@for i in $^; do bin/spellcheck $${i} -H; done;
 
 $(OUTPUTS_PDF): %.pdf : %.html bin/chrome
 	bin/chrome --print-to-pdf=$@ $<
