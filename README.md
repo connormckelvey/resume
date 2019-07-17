@@ -1,10 +1,9 @@
 # Resume
 
-[![CircleCI](https://circleci.com/gh/connormckelvey/resume.svg?style=svg)](https://circleci.com/gh/connormckelvey/resume)
+[![Build Status](https://dev.azure.com/tcath2s/resume/_apis/build/status/Shylock-Hg.resume?branchName=master)](https://dev.azure.com/tcath2s/resume/_build/latest?definitionId=2&branchName=master)
 
 This project builds my personal résumé as HTML and PDF documents from 
-reStructuredText. Download the latest build of my résumé from [releases](https://github.com/connormckelvey/resume/releases/latest), or see 
-[below](#getting-started) for instructions on building from source.
+reStructuredText.
 
 ## Getting Started
 
@@ -27,17 +26,21 @@ machine for development and building purposes.
 
 1. Clone the Repository 
     ```
-    $ git clone https://github.com/connormckelvey/resume.git
+    $ git clone https://github.com/shylock-hg/resume.git
     ```
 2. Change directories 
     ```
     $ cd resume
     ```
-3. Install dependencies and build résumé documents
+3. Write your resume from template
+    ```
+    $ cp RESUME.rst my_resume.rst
+    ```
+4. Install dependencies and build résumé documents
     ```
     $ make
     ```
-4. Should built résumé documents
+5. Should built résumé documents
     ```
     $ ls -la dist
     ```
@@ -45,20 +48,8 @@ machine for development and building purposes.
 ### Additional Make Targets
 
 - `make` - Generate HTML and PDF documents output to `$BUILD_DIR`
-- `make html` - Generate HTML document and open HTML for viewing
-- `make pdf` - Generate both HTML and PDF documents and open PDF for viewing 
 - `make requirements` - Install Python requirements from requirements.txt
-- `make clean` - Remove all untracked/ignored files (including `dist`)
-
-### Environment Variables
-
-These environment variables are used within the Makefile and the bin/chrome 
-script: 
-
-- `BUILD_DIR` - Directory for built résumés. Default: `dist`
-- `RESUME_NAME` - Filename (without extension) used for built résumés. Default: `Connor_McKelvey__Resume`
-- `RESUME_SRC` - Résumé source file (must be reStructuredText). Default: `RESUME.rst`
-- `CHROME_PATH` - Path to Chrome executable. Default depends on platform. See [Specifying a Chrome Path].
+- `make clean` - Remove all generated files
 
 #### Specifying a Chrome Path
 
@@ -71,9 +62,7 @@ instead, you can override the path to the executable with an environment variabl
 ## Releasing
 
 HTML and PDF résumé documents are automatically built on every commit using 
-[CircleCI](http://circleci.com/). Résumé documents from tagged commits (e.g. v1.1.2) 
-are uploaded to this project's [Releases](https://github.com/connormckelvey/resume/releases) 
-page.
+[Azure-Pipeline](https://dev.azure.com/tcath2s/resume).
 
 ## Built With
 
