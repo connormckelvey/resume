@@ -60,7 +60,7 @@
 **分布式存储**
   | 熟悉LSM-Tree, B+Tree, ISAM等常用的存储结构, Paxos, Raft等一致性算法
   | 熟悉分布式系统的设计维护
-  | 深入研究过Redis, RockDb, TiDB/TiKV, ArangoDB, Postgres等开源缓存存储组件的源码
+  | 深入研究过Redis, RocksDb, TiDB/TiKV, ArangoDB, Postgres等开源缓存存储组件的源码
 
 开源项目
 --------
