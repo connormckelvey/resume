@@ -57,13 +57,13 @@
   | 专业英语读写能力，独立解决问题能力，良好的编码风格以及文档撰写习惯
 
 **后端**
-  | 理解常用的Thread Pool, Reactor等网络服务模型, TCP/IP, HTTP, RPC等协议
-  | 深入研究过libevent, libuv, asio等网络服务库源码
+  | 理解常用的Thread Pool, Reactor等网络服务模型, TCP/IP, HTTP等协议
+  | 深入研究过libevent, libuv等网络服务库源码
 
 **分布式存储**
-  | 熟悉LSM-Tree, B+Tree, ISAM等常用的存储结构, Paxos, Raft等一致性算法
+  | 熟悉LSM-Tree等常用的存储结构, Paxos, Raft等一致性算法
   | 熟悉分布式系统的设计维护
-  | 深入研究过Redis, RocksDb, TiDB/TiKV, ArangoDB, Postgres等开源缓存存储组件的源码
+  | 深入研究过Redis, RocksDb等开源缓存存储组件的源码
 
 开源项目
 --------
