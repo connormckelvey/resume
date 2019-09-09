@@ -2,7 +2,7 @@
 ShiHai Huang
 ======================
 :Address: HangZhou, ZheJiang
-          132-6726-7175
+          132-****-7175
 :Email: tcath2s@icloud.com
 :Website: `blog`_
 :Github: `@shylock-hg`_
