@@ -12,7 +12,17 @@ ShiHai Huang
 Employment
 ----------
 
-2019.03 - Present
+2019.10 - Present
+  | **Graph Database developer**
+  | *HangZhou Vesoft Inc. * |---| HangZhou,ZheJiang
+
+  | Mainly in development of Distributed Graph Database
+  | *Skill Stack*: c++, Distributed Database, linux, shell, python
+
+  * Designing and implementing in feature of Graph Database.
+  * Join designing of Query Engine, mainly in analysis and optimize of variable lifetime, finally apply it to patent.
+
+2019.03 - 2019.10
   | **Cloud c/c++ Engineer**
   | *Beyondsoft Corporation* |---| HangZhou，ZheJiang
 
@@ -74,15 +84,17 @@ Skill Stack
 OpenSource
 -------------
 
+**Nebula Graph**
+ `Nebula Graph <https://github.com/vesoft-inc/nebula>`_ ,
+ A distributed, fast open-source graph database featuring horizontal scalability and high availability
+
 **AT-Interpreter**
   `AT-Interpreter <https://github.com/shylock-hg/at-interpreter/>`_ ,
   AT command runtime.
 
-**mqttor**
-  `mqttor <https://github.com/shylock-hg/mqttor/>`_ , MQTT client
-
-**ccc**
-  `ccc <https://github.com/shylock-hg/ccc/>`_ , C language library
+**ABI**
+  `ABI <https://github.com/Shylock-Hg/ABI>`_ ,
+  A simple interpreter of brainfuck language.
 
 .. meta::
    :description: Shylock Hg's Software Engineering Resume

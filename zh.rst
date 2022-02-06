@@ -12,7 +12,17 @@
 工作经历
 ----------
 
-2019.03 - 至今
+2019.10 - 至今
+  | **图数据开发工程师**
+  | *杭州欧若数网科技有限公司* |---| 杭州，浙江
+
+  | 从事图数据库开发
+  | *技术栈*: c++, 分布式数据库, linux, shell, python
+
+  * 图数据库功能设计实现。
+  * 参与设计图数据库查询引擎框架，主要设计了变量生命周期分析优化部分，合著成整个查询引擎专利。
+
+2019.03 - 2019.10
   | **云计算c/c++工程师**
   | *博彦科技股份有限公司* |---| 杭州，浙江
 
@@ -68,15 +78,17 @@
 开源项目
 --------
 
+**Nebula Graph**
+ `Nebula Graph <https://github.com/vesoft-inc/nebula>`_ ,
+  具有水平扩展以及高可用性的开源分布式图数据库。
+
 **AT-Interpreter**
   `AT-Interpreter <https://github.com/shylock-hg/at-interpreter/>`_ ,
   AT命令运行时,解析运行AT命令。
 
-**mqttor**
-  `mqttor <https://github.com/shylock-hg/mqttor/>`_ , MQTT协议客户端
-
-**ccc**
-  `ccc <https://github.com/shylock-hg/ccc/>`_ , C语言基础库
+**ABI**
+  `ABI <https://github.com/Shylock-Hg/ABI>`_ ,
+  一个简单的brainfuck语言解释器.
 
 .. meta::
    :description: Shylock Hg's Software Engineering Resume
