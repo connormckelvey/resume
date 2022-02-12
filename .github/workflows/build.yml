@@ -50,4 +50,5 @@ jobs:
               -u 'Shylock-Hg' \
               -r 'Resume' \
               -replace \
+              -delete \
               resume $target
