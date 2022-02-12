@@ -1,0 +1,53 @@
+name: build
+
+on:
+  pull_request:
+    branches:
+      - master
+      - 'v[0-9]+.*'
+  push:
+    branches:
+      - master
+      - 'v[0-9]+.*'
+
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+      - uses: actions/checkout@v2
+        with:
+          clean: false
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 2.7
+      - run: ./.ci/install-requirements.sh
+      - run: ./.ci/build.sh
+      - env:
+          RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: |
+          set -ex;
+
+          readonly target='resume-dist.tar.gz'
+          readonly ghr='ghr_v0.12.2_linux_amd64'
+
+          rm dist/main.css
+          wget https://github.com/tcnksm/ghr/releases/download/v0.12.2/$ghr.tar.gz
+          tar -xvzf $ghr.tar.gz
+          tar -cvzf $target ./dist
+          ./$ghr/ghr -t ${RELEASE_TOKEN} \
+              -u 'Shylock-Hg' \
+              -r 'Resume' \
+              -replace \
+              resume $target
