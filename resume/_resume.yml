@@ -16,7 +16,7 @@ employment:
     dates: { start: "2019" }
     company: VMware Carbon Black
     location: Boulder, CO / Remote
-    summary: Designed and developed multiple greenfield ... idk
+    summary: Worked with stakeholders to architect and implement multiple customer facing features
     technology: [Go, Python, Java, gRPC, Terraform, Kubernetes, Kinesis, DynamoDB, PostgresQL]
     notes:
       - Designed and developed a streaming data platform for 3rd party SEIMs, handling millions of events/sec
