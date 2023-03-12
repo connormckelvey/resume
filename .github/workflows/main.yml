@@ -1,11 +1,7 @@
-
 name: main
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches: 
       - master
 jobs:
   test:
@@ -27,4 +23,8 @@ jobs:
       with:
         go-version: 1.18
     - name: build
-      run: make   
+      run: make
+    - name: resume
+      run: make resume
+  
+  
