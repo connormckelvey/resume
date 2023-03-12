@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Connor McKelvey Resume</title>
+  <meta name="description" content="Connor McKelvey Resume">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+  {{ embed_css .Styles }}
+</head>
+
+<body>
+    <div id="resume">
+        {{ template "personal-info-section" .Resume.PersonalInfo }}
+        <main>
+            {{ template "employment-section" .Resume.Employment }}
+            {{ template "education-section" .Resume.Education }}
+            {{ template "experience-section" .Resume.Experience }}
+            {{ template "projects-section" .Resume.Projects }}
+        </main>
+    </div>
+</body>
+</html>
+
+{{define "personal-info-section"}}
+    <header id="personal-info">
+        <h1>{{ .Name }}</h1>
+        <dl>
+            <dt class="address">Address</dt>
+            <dd class="address">{{ .Location }}<br/> {{ .Phone }}</pre></dd>
+
+            <dt>Email</dt>
+            <dd><i class="fa-solid fa-envelope"></i> {{ link .Email }}</dd>
+
+            <dt>Website</dt>
+            <dd><i class="fa-solid fa-link"></i> {{ link .Website }}</dd>
+
+            <dt>Github</dt>
+            <dd><i class="fa-brands fa-github"></i> {{ link .Github }}</dd>
+        </dl>
+    </header>
+{{end}}
+
+{{define "employment-section"}}
+    <section id="employment">
+        <h2>Employment</h2>
+        <dl class="employment-list">
+            {{range .}}
+            <dt class="employment-list-item">{{ dates .Dates }}</dt>
+            <dd class="employment-list-item">
+                <div class="block">
+                    <h3>{{ .Title }}</h3>
+                    <p class="company"><em>{{ .Company }}</em> &mdash; {{ .Location }}</p>
+                </div>
+                <div class="block">
+                    <p class="summary">{{ .Summary }}</p>
+                    <p class="technology"><em>Technologies used: {{ join .Technology ", " }}</em></p>
+                </div>
+                <ul class="notes">
+                    {{range .Notes}}
+                        <li>{{ . }}</li>
+                    {{end}}
+                </ul>
+            </dd>
+            {{end}}
+        </dl>
+    </section>
+{{end}}
+
+{{define "education-section"}}
+    <section id="education">
+        <h2>Education</h2>
+        <dl class="education-list">
+            {{range .}}
+            <dt class="education-list-item">{{ dates .Dates }}</dt>
+            <dd class="education-list-item">
+                <div class="block">
+                    <h3>{{ .Degree }}</h3>
+                    <p><em>{{ .Institution }}</em> &mdash; {{ .Location }}</p>
+                </div>
+                <ul class="notes">
+                    {{range .Notes}}
+                        <li>{{ . }}</li>
+                    {{end}}
+                </ul>
+            </dd>
+            {{end}}
+        </dl>
+    </section>
+{{end}}
+
+{{define "experience-section"}}
+    <section id="experience">
+        <h2>Experience</h2>
+        <dl class="experience-list">
+            {{range .}}
+            <dt class="experience-list-item">
+                <h3>{{ .Title }}</h3>
+            </dt>
+            <dd class="experience-list-item">
+                {{ join .Items ", " }}
+            </dd>
+            {{end}}
+        </dl>
+    </section>
+{{end}}
+
+{{define "projects-section"}}
+    <section id="projects">
+        <h2>Projects</h2>
+        <dl class="projects-list">
+            {{range .}}
+            <dt class="projects-list-item">
+                <h3>{{ .Title }}</h3>
+            </dt>
+            <dd class="projects-list-item">
+                <span class="description">{{ .Description }}</span>
+                <span class="technology">{{ join .Technology ", " }}</span>
+            </dd>
+            {{end}}
+        </dl>
+    </section>
+{{end}}

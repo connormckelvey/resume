@@ -1,9 +1,0 @@
-#!/bin/bash -e
-bin_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-project_dir="${bin_dir}/../"
-
-misspelled_words="$(cat ${1} | aspell ${2} list --home-dir=${project_dir})"
-if [ $(echo $misspelled_words | grep -c '\w') -gt 0 ]; then
-  echo ${misspelled_words}
-  exit 1
-fi

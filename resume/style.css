@@ -1,0 +1,148 @@
+html, body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10pt;
+    padding: 0;
+    overflow: auto;
+}
+
+body {
+    padding: 0.25in;
+    max-width: none;
+}
+
+@media print {
+    body {
+        margin-top: -3em;
+    }
+}
+
+#resume {
+    position: relative;
+    line-height: 1.3;
+    counter-reset: table;
+    counter-reset: figure;
+    max-width: 50em;
+    margin: auto;
+  }
+
+h1, h2, h3, h4, h5, h6, dl > dd {
+    margin-bottom: 0.5em;
+    margin-left: 0;
+}
+
+#personal-info dl {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#personal-info dd {
+    vertical-align: middle;
+    margin: 0;
+  }
+
+#personal-info dt {
+    position: absolute;
+    top: -9999999999px;
+    margin: 0;
+}
+
+#personal-info dd.address {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+}
+
+@media (min-width: 600px) {
+    #personal-info dd:not(.address) {
+        margin-right: 2em;
+    }
+}
+
+#personal-info dd i {
+  margin-right: 0.5em;
+}
+
+@media (min-width: 600px) {
+    #employment dt, #education dt {
+        transform: translateY(100%);
+    }
+}
+
+#employment dt, #education dt {
+  position: absolute;
+  right: 0;
+  font-style: italic;
+}
+
+@media (min-width: 600px) {
+    #experience dl {
+        columns: 2;
+    }
+}
+
+#experience dl > dt, #experience dl > dd {
+    break-inside: avoid;
+}
+
+dt h3, dd h3 {
+    margin-top: 0;
+}
+
+
+#projects dl > dt {
+    float: left;
+    margin-right: 0.5em;
+}
+
+/* section {
+    page-break-inside: avoid;
+} */
+
+section h2 {
+    font-size: 1.4em;
+    font-weight: 100;
+}
+
+section h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+section dl {
+    position: relative;
+}
+
+.block {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+dl > dd > p:last-child {
+  margin-bottom: 0;
+}
+
+dl > dd > p:first-child {
+  margin-top: 0;
+}
+
+ol, ul, dl, table {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul {
+    padding-left: 1em;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
