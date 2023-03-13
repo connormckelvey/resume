@@ -4,81 +4,85 @@ on:
     branches:
       - master
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: setup
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.18
-    - name: test
-      run: make test
   build:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-    - uses: actions/checkout@v2
-    - name: setup
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.18
-    - name: build
-      run: make
-    - name: resume
-      run: make resume
-    - name: html2pdf
-      uses: connormckelvey/html2pdf-action@v2
-      with:
-        html: resume/dist/resume.html
-    - name: Archive resume
-      uses: actions/upload-artifact@v3
-      with:
-        name: resume
-        path: |
-          resume/dist/resume.html
-          resume/dist/resume.html.pdf
-  release:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Download resume artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: resume
-      - shell: bash
-        run: echo $PWD && ls -la
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v0.0.0-${{ github.sha }}
-          release_name: Release ${{ github.sha }}
-          body: |
-            Resume updates
-          draft: false
-          prerelease: false
-      - name: Upload HTML
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: resume.html
-          asset_name: resume.html
-          asset_content_type: text/html
-      - name: Upload PDF
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: resume.html.pdf
-          asset_name: resume.html.pdf
-          asset_content_type: application/pdf
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: setup
+  #     uses: actions/setup-go@v2
+  #     with:
+  #       go-version: 1.18
+  #   - name: test
+  #     run: make test
+  # build:
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: setup
+  #     uses: actions/setup-go@v2
+  #     with:
+  #       go-version: 1.18
+  #   - name: build
+  #     run: make
+  #   - name: resume
+  #     run: make resume
+  #   - name: html2pdf
+  #     uses: connormckelvey/html2pdf-action@v2
+  #     with:
+  #       html: resume/dist/resume.html
+  #   - name: Archive resume
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: resume
+  #       path: |
+  #         resume/dist/resume.html
+  #         resume/dist/resume.html.pdf
+  # release:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+  #     - name: Download resume artifact
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: resume
+  #     - shell: bash
+  #       run: echo $PWD && ls -la
+  #     - name: Create Release
+  #       id: create_release
+  #       uses: actions/create-release@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         tag_name: v0.0.0-${{ github.sha }}
+  #         release_name: Release ${{ github.sha }}
+  #         body: |
+  #           Resume updates
+  #         draft: false
+  #         prerelease: false
+  #     - name: Upload HTML
+  #       uses: actions/upload-release-asset@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         upload_url: ${{ steps.create_release.outputs.upload_url }} 
+  #         asset_path: resume.html
+  #         asset_name: resume.html
+  #         asset_content_type: text/html
+  #     - name: Upload PDF
+  #       uses: actions/upload-release-asset@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         upload_url: ${{ steps.create_release.outputs.upload_url }} 
+  #         asset_path: resume.html.pdf
+  #         asset_name: resume.html.pdf
+  #         asset_content_type: application/pdf
   
   
