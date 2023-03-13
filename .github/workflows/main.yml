@@ -7,8 +7,9 @@ jobs:
   html2pdf:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: html2pdf
-      uses: connormckelvey/html2pdf-action@v2
+      uses: connormckelvey/html2pdf-action@v6
       with:
         html: foo.html
   test:
