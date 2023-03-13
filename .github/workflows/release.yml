@@ -47,13 +47,15 @@ jobs:
           asset_path: resume.html.pdf
           asset_name: resume.html.pdf
           asset_content_type: application/pdf
+      
+      - name: install-aws-cli-action
+        uses: unfor19/install-aws-cli-action@v1
       - name: Publish to website
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         shell: bash
         run: |
-          sudo apt-get install -y awscli
           aws s3 cp resume.html s3://www.connormckelvey.com/resume.html --acl public-read
           aws s3 cp resume.html.pdf s3://www.connormckelvey.com/resume.pdf --acl public-read
   
