@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	//
 	var (
 		resumePath   string
 		templatePath string

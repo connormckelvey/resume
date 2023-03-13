@@ -26,7 +26,7 @@ jobs:
     - name: resume
       run: make resume
     - name: html2pdf
-      uses: connormckelvey/html2pdf-action@v2
+      uses: connormckelvey/html2pdf-action@v3.0.1
       with:
         html: resume/dist/resume.html
     - name: Archive resume
