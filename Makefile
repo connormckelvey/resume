@@ -15,12 +15,8 @@ resume: dist/
 test:  
 	go test -count=1 -v ./...
 
-.PHONY: docker
-docker:
-	docker build -t html2pdf -f docker/Dockerfile .
-
 .PHONY: pdf
-pdf: build resume docker
-	docker run -v "$$PWD:/data" html2pdf \
+pdf: build resume
+	docker run -v "$$PWD:/data" connormckelvey/html2pdf:v0.0.3 \
 		-html /data/resume/dist/resume.html \
 		-output /data/resume/dist/resume.pdf
