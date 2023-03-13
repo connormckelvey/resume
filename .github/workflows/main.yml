@@ -4,6 +4,13 @@ on:
     branches:
       - master
 jobs:
+  html2pdf:
+    runs-on: ubuntu-latest
+    steps:
+    - name: html2pdf
+      uses: connormckelvey/html2pdf-action@v2
+      with:
+        html: foo.html
   test:
     runs-on: ubuntu-latest
     steps:
