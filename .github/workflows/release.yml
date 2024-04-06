@@ -1,61 +1,28 @@
-name: release
+name: Release
 on:
   push:
     tags:
-      - v*
+      - "v*.*.*"
 jobs:
   build:
-    uses: ./.github/workflows/build.yml
-    secrets: inherit
-  release:
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Download resume artifact
-        uses: actions/download-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
-          name: resume
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: |
-            ${{ github.event.head_commit.message }}
-          draft: false
-          prerelease: false
-      - name: Upload HTML
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: resume.html
-          asset_name: resume.html
-          asset_content_type: text/html
-      - name: Upload PDF
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: resume.html.pdf
-          asset_name: resume.html.pdf
-          asset_content_type: application/pdf
-      - name: Publish to website
-        env:
-          AWS_DEFAULT_REGION: us-west-2
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        shell: bash
+          go-version: 1.22.x
+          cache: true
+      - name: Deps
+        run: go install github.com/connormckelvey/tmplrun/cmd/tmplrun@v0.1.0
+      - name: Build
         run: |
-          sudo apt-get install -y awscli
-          aws s3 cp resume.html s3://www.connormckelvey.com/resume.html --acl public-read
-          aws s3 cp resume.html.pdf s3://www.connormckelvey.com/resume.pdf --acl public-read
-  
-  
+            make build
+            cp build/resume.docx build/connor_mckelvey_resume.docx
+            cp build/resume.pdf build/connor_mckelvey_resume.pdf
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/connor_mckelvey_resume.docx
+            build/connor_mckelvey_resume.pdf

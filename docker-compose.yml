@@ -1,0 +1,6 @@
+services:
+  pdf:
+    image: ghcr.io/connormckelvey/libreoffice-headless:0.1.0
+    command: --convert-to pdf:writer_pdf_Export --outdir /build /build/resume.docx 
+    volumes:
+      - ${PWD}/build:/build:rw
