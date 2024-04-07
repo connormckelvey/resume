@@ -129,105 +129,97 @@ func (r *docxRenderer) renderTabStop(w io.Writer, wpProps io.Writer, _ io.Writer
 }
 
 func (r *docxRenderer) renderParagraphWithTabStop(w io.Writer, source []byte, n *ast.Paragraph) error {
-	var text bytes.Buffer
-	var wpProps bytes.Buffer
-	var wrProps bytes.Buffer
-	fmt.Fprint(w, `<w:p>`)
-
-	for child := n.FirstChild(); child != nil; child = child.NextSibling() {
-		switch c := child.(type) {
-		case *tabStop:
-			err := r.renderTabStop(&text, &wpProps, &wrProps, source, c)
-			if err != nil {
-				return err
+	return wParagraph(w, func(wpProps, content io.Writer) error {
+		return wRun(content, func(wrProps, content io.Writer) error {
+			for child := n.FirstChild(); child != nil; child = child.NextSibling() {
+				switch c := child.(type) {
+				case *tabStop:
+					err := r.renderTabStop(content, wpProps, wrProps, source, c)
+					if err != nil {
+						return err
+					}
+				default:
+					err := r.renderInline(content, wpProps, wrProps, source, child)
+					if err != nil {
+						return err
+					}
+				}
 			}
-		default:
-			err := r.renderInline(&text, &wpProps, &wrProps, source, child)
-			if err != nil {
-				return err
-			}
-		}
-	}
-	if wpProps.Len() > 0 {
-		fmt.Fprint(w, `<w:pPr>`)
-		io.Copy(w, &wpProps)
-		fmt.Fprint(w, `</w:pPr>`)
-	}
-	fmt.Fprint(w, `<w:r>`)
-	if wrProps.Len() > 0 {
-		fmt.Fprint(w, `<w:rPr>`)
-		io.Copy(w, &wrProps)
-		fmt.Fprint(w, `</w:rPr>`)
-	}
-	io.Copy(w, &text)
-	fmt.Fprint(w, `</w:r>`)
-	fmt.Fprint(w, `</w:p>`)
-
-	return nil
+			return nil
+		})
+	})
 }
 
+const spacing = `<w:p><w:pPr><w:spacing w:line="%d"/></w:pPr></w:p>`
+
 func (r *docxRenderer) renderThematicBreak(w io.Writer, _ []byte, _ *ast.ThematicBreak) error {
-	_, err := fmt.Fprint(w, `<w:p><w:pPr><w:spacing w:line="50"/></w:pPr></w:p>`)
+	_, err := fmt.Fprintf(w, spacing, 50)
 	return err
 }
 
 func (r *docxRenderer) renderParagraph(w io.Writer, source []byte, n *ast.Paragraph) error {
-	var ts *tabStop
 	for child := n.FirstChild(); child != nil; child = child.NextSibling() {
-		if c, ok := child.(*tabStop); ok {
-			ts = c
-			break
+		if _, ok := child.(*tabStop); ok {
+			return r.renderParagraphWithTabStop(w, source, n)
 		}
 	}
-	if ts != nil {
-		return r.renderParagraphWithTabStop(w, source, n)
+	return wParagraph(w, func(wpProps, content io.Writer) error {
+		for child := n.FirstChild(); child != nil; child = child.NextSibling() {
+			err := r.renderInline(content, wpProps, nil, source, child)
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+}
+
+func wParagraph(w io.Writer, handler func(wpProps, content io.Writer) error) error {
+	var (
+		wpProps bytes.Buffer
+		content bytes.Buffer
+	)
+	if err := handler(&wpProps, &content); err != nil {
+		return err
 	}
-	fmt.Fprint(w, `<w:p>`)
-	var text bytes.Buffer
-	var wpProps bytes.Buffer
-	for child := n.FirstChild(); child != nil; child = child.NextSibling() {
-		err := r.renderInline(&text, &wpProps, nil, source, child)
-		if err != nil {
+	if _, err := fmt.Fprint(w, `<w:p>`); err != nil {
+		return err
+	}
+	if wpProps.Len() > 0 {
+		if _, err := fmt.Fprintf(w, `<w:pPr>%s</w:pPr>`, wpProps.String()); err != nil {
 			return err
 		}
 	}
-	if wpProps.Len() > 0 {
-		fmt.Fprint(w, `<w:pPr>`)
-		io.Copy(w, &wpProps)
-		fmt.Fprint(w, `</w:pPr>`)
-
+	if _, err := io.Copy(w, &content); err != nil {
+		return err
 	}
-	io.Copy(w, &text)
-	fmt.Fprint(w, `</w:p>`)
+
+	if _, err := fmt.Fprint(w, `</w:p>`); err != nil {
+		return err
+	}
 	return nil
 }
 
+const headingStyle = `<w:pStyle w:val="Heading%d" />`
+
 func (r *docxRenderer) renderHeading(w io.Writer, source []byte, h *ast.Heading) error {
-	var text bytes.Buffer
-	var wpProps bytes.Buffer
-
-	for _, attr := range h.Attributes() {
-		fmt.Fprintf(&wpProps, `<w:%s w:val="%v" />`, string(attr.Name), string(attr.Value.([]byte)))
-	}
-
-	for child := h.FirstChild(); child != nil; child = child.NextSibling() {
-		err := r.renderInline(&text, &wpProps, nil, source, child)
-		if err != nil {
+	return wParagraph(w, func(wpProps, content io.Writer) error {
+		if _, err := fmt.Fprintf(wpProps, headingStyle, h.Level); err != nil {
 			return err
 		}
-	}
-	fmt.Fprint(w, `<w:p>`)
-	fmt.Fprintf(&wpProps, `<w:pStyle w:val="Heading%d" />`, h.Level)
-
-	if wpProps.Len() > 0 {
-		fmt.Fprint(w, `<w:pPr>`)
-		io.Copy(w, &wpProps)
-		fmt.Fprint(w, `</w:pPr>`)
-	}
-	io.Copy(w, &text)
-	fmt.Fprint(w, `</w:p>`)
-
-	return nil
+		for _, attr := range h.Attributes() {
+			if _, err := fmt.Fprintf(wpProps, `<w:%s w:val="%v" />`, string(attr.Name), string(attr.Value.([]byte))); err != nil {
+				return err
+			}
+		}
+		for child := h.FirstChild(); child != nil; child = child.NextSibling() {
+			err := r.renderInline(content, wpProps, nil, source, child)
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+	})
 }
 
 func (r *docxRenderer) renderList(w io.Writer, source []byte, l *ast.List) error {
@@ -239,51 +231,49 @@ func (r *docxRenderer) renderList(w io.Writer, source []byte, l *ast.List) error
 	}
 	return nil
 }
-func (r *docxRenderer) renderListItem(w io.Writer, source []byte, l *ast.ListItem) error {
-	var text bytes.Buffer
-	var wpProps bytes.Buffer
-	fmt.Fprint(&wpProps, `<w:numPr>`)
-	fmt.Fprint(&wpProps, `<w:pStyle w:val="ListParagraph" />`)
-	fmt.Fprint(&wpProps, `<w:ilvl w:val="0" />`)
-	fmt.Fprint(&wpProps, `<w:numId w:val="2" />`)
-	fmt.Fprint(&wpProps, `</w:numPr>`)
 
-	for child := l.FirstChild(); child != nil; child = child.NextSibling() {
-		err := r.renderInline(&text, &wpProps, nil, source, child)
-		if err != nil {
+const listItemStyle = `<w:numPr><w:pStyle w:val="ListParagraph" /><w:ilvl w:val="0" /><w:numId w:val="2" /></w:numPr>`
+
+func (r *docxRenderer) renderListItem(w io.Writer, source []byte, l *ast.ListItem) error {
+	return wParagraph(w, func(wpProps, content io.Writer) error {
+		if _, err := fmt.Fprint(wpProps, listItemStyle); err != nil {
+			return err
+		}
+		for child := l.FirstChild(); child != nil; child = child.NextSibling() {
+			err := r.renderInline(content, wpProps, nil, source, child)
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+
+	})
+}
+
+func wRun(w io.Writer, handler func(wrProps io.Writer, content io.Writer) error) error {
+	if _, err := fmt.Fprint(w, `<w:r>`); err != nil {
+		return err
+	}
+	var wrProps bytes.Buffer
+	var content bytes.Buffer
+	if err := handler(&wrProps, &content); err != nil {
+		return err
+	}
+	if wrProps.Len() > 0 {
+		if _, err := fmt.Fprintf(w, `<w:rPr>%s</w:rPr>`, wrProps.String()); err != nil {
 			return err
 		}
 	}
-
-	fmt.Fprint(w, `<w:p>`)
-	if wpProps.Len() > 0 {
-		fmt.Fprint(w, `<w:pPr>`)
-		io.Copy(w, &wpProps)
-		fmt.Fprint(w, `</w:pPr>`)
-	}
-	io.Copy(w, &text)
-	fmt.Fprint(w, `</w:p>`)
-	return nil
-
-}
-
-func (r *docxRenderer) renderTextRun(w io.Writer, wpProps io.Writer, source []byte, n ast.Node, renderInside func(w io.Writer, wpProps io.Writer, wrProps io.Writer, source []byte, n ast.Node) error) error {
-	var runPropsW bytes.Buffer
-	var text bytes.Buffer
-	fmt.Fprint(w, `<w:r>`)
-	err := renderInside(&text, wpProps, &runPropsW, source, n)
-	if err != nil {
+	if _, err := io.Copy(w, &content); err != nil {
 		return err
 	}
-	if runPropsW.Len() > 0 {
-		fmt.Fprint(w, `<w:rPr>`)
-		io.Copy(w, &runPropsW)
-		fmt.Fprint(w, `</w:rPr>`)
+	if _, err := fmt.Fprint(w, `</w:r>`); err != nil {
+		return err
 	}
-	io.Copy(w, &text)
-	fmt.Fprint(w, `</w:r>`)
 	return nil
 }
+
+const hyperlinkStyle = `<w:rStyle w:val="Hyperlink" />`
 
 func (r *docxRenderer) renderLink(w io.Writer, wpProps, _ io.Writer, source []byte, ln *ast.Link) error {
 	rid, ok := r.links[string(ln.Destination)]
@@ -293,24 +283,13 @@ func (r *docxRenderer) renderLink(w io.Writer, wpProps, _ io.Writer, source []by
 	}
 	fmt.Fprintf(w, `<w:hyperlink w:history="1" r:id="%s">`, rid)
 	for child := ln.FirstChild(); child != nil; child = child.NextSibling() {
-		fmt.Fprint(w, `<w:r>`)
-		var wrProps bytes.Buffer
-
-		fmt.Fprint(&wrProps, `<w:rStyle w:val="Hyperlink" />`)
-
-		var text bytes.Buffer
-		err := r.renderInline(&text, wpProps, &wrProps, source, child)
+		err := wRun(w, func(runProps io.Writer, content io.Writer) error {
+			fmt.Fprint(runProps, hyperlinkStyle)
+			return r.renderInline(content, wpProps, runProps, source, child)
+		})
 		if err != nil {
 			return err
 		}
-
-		if wrProps.Len() > 0 {
-			fmt.Fprint(w, `<w:rPr>`)
-			io.Copy(w, &wrProps)
-			fmt.Fprint(w, `</w:rPr>`)
-		}
-		io.Copy(w, &text)
-		fmt.Fprint(w, `</w:r>`)
 	}
 	fmt.Fprint(w, `</w:hyperlink>`)
 	return nil
@@ -325,8 +304,8 @@ func (r *docxRenderer) renderInline(w io.Writer, wpProps io.Writer, wrProps io.W
 
 	// called from block level, not nested inline
 	if wrProps == nil {
-		return r.renderTextRun(w, wpProps, source, n, func(w, wpProps, wrProps io.Writer, source []byte, n ast.Node) error {
-			return r.renderInline(w, wpProps, wrProps, source, n)
+		return wRun(w, func(wrProps, content io.Writer) error {
+			return r.renderInline(content, wpProps, wrProps, source, n)
 		})
 	}
 
@@ -354,18 +333,14 @@ func (r *docxRenderer) renderInline(w io.Writer, wpProps io.Writer, wrProps io.W
 
 func (r *docxRenderer) renderText(w io.Writer, _ io.Writer, source []byte, n *ast.Text) error {
 	text := escapeXMLBytes(n.Text(source))
-	w.Write([]byte(`<w:t xml:space="preserve">`))
-	w.Write(text)
-	w.Write([]byte("</w:t>"))
-	return nil
+	_, err := fmt.Fprintf(w, `<w:t xml:space="preserve">%s</w:t>`, string(text))
+	return err
 }
 
 func (r *docxRenderer) renderTextBlock(w io.Writer, _ io.Writer, source []byte, n *ast.TextBlock) error {
 	text := escapeXMLBytes(n.Text(source))
-	w.Write([]byte(`<w:t xml:space="preserve">`))
-	w.Write(text)
-	w.Write([]byte("</w:t>"))
-	return nil
+	_, err := fmt.Fprintf(w, `<w:t xml:space="preserve">%s</w:t>`, string(text))
+	return err
 }
 
 func (r *docxRenderer) renderEmphasis(w, wpProps, wrProps io.Writer, source []byte, n *ast.Emphasis) error {

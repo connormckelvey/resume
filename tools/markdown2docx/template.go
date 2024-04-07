@@ -50,7 +50,7 @@ func (dfs *docxTemplate) Render(w io.Writer, overrides map[string]io.Reader) err
 	defer zw.Close()
 
 	structure := afero.NewIOFS(template)
-	fs.WalkDir(structure, ".", func(path string, info fs.DirEntry, err error) error {
+	return fs.WalkDir(structure, ".", func(path string, info fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -75,8 +75,6 @@ func (dfs *docxTemplate) Render(w io.Writer, overrides map[string]io.Reader) err
 
 		return nil
 	})
-
-	return nil
 }
 
 func newFsTemplate(dir fs.FS) (afero.Fs, error) {
