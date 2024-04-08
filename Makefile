@@ -1,16 +1,18 @@
 SRC=$(shell find . -name "*.go")
 
-.PHONY: clean fmt lint test deps build markdown
+.PHONY: clean dir fmt lint test deps markdown build build-docx
 
 default: all
 
 all: fmt lint test build
 
-build: deps build_dir markdown
+build: deps dir markdown build-docx build-pdf
+
+build-docx: deps dir markdown
 	go run ./tools/markdown2docx/ -t resume/.docx.d -o build/resume.docx < build/resume.md
 
-build_dir:
-	mkdir -p build
+build-pdf: deps dir markdown build-docx
+	pandoc -o build/resume.pdf build/resume.docx
 
 fmt:
 	$(info * [checking formatting] **************************************)
@@ -34,3 +36,6 @@ markdown:
 
 clean:
 	rm -rf ./build
+
+dir:
+	mkdir -p build

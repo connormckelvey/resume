@@ -1,0 +1,6 @@
+services:
+  pdf:
+    build: .
+    command: libreoffice --headless --convert-to pdf:writer_pdf_Export --outdir /build /build/resume.docx 
+    volumes:
+      - ${PWD}/build:/build:rw
