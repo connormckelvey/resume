@@ -12,7 +12,7 @@ build-docx: deps dir markdown
 	go run ./tools/markdown2docx/ -t resume/.docx.d -o build/resume.docx < build/resume.md
 
 build-pdf: deps dir markdown build-docx
-	pandoc -o build/resume.pdf build/resume.docx
+	docker-compose run pdf
 
 fmt:
 	$(info * [checking formatting] **************************************)
@@ -24,7 +24,7 @@ lint:
 
 test: deps
 	$(info * [running tests] ********************************************)
-	go test -v $(shell go list ./... | grep -v /examples$)
+	go test -v $(shell go list ./...)
 
 deps:
 	$(info * {downloading dependencies} *********************************)
@@ -39,3 +39,6 @@ clean:
 
 dir:
 	mkdir -p build
+
+docker-libreoffice:
+	docker-compose build libreoffice

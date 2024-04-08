@@ -37,7 +37,6 @@ jobs:
         platform:
         - ubuntu
         go:
-        - 21
         - 22
     name: '${{ matrix.platform }} | 1.${{ matrix.go }}.x'
     runs-on: ${{ matrix.platform }}-latest
