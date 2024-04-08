@@ -39,6 +39,3 @@ clean:
 
 dir:
 	mkdir -p build
-
-docker-libreoffice:
-	docker-compose build libreoffice

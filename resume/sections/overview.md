@@ -1,7 +1,7 @@
 # <% name %>
 ## <% title %>
 
-<% template("../util/location.md", location) %> | <% phone %>
+<% template("../util/location.md", location) %>
 
 ---
 
