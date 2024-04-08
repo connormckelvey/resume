@@ -9,9 +9,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.x
+          cache: true
+      - name: Deps
+        run: go install github.com/connormckelvey/tmplrun/cmd/tmplrun@v0.1.0
       - name: Build
         run: |
-            go install github.com/connormckelvey/tmplrun/cmd/tmplrun@v0.1.0
             make build
             cp build/resume.docx build/connor_mckelvey_resume.docx
             cp build/resume.pdf build/connor_mckelvey_resume.pdf
