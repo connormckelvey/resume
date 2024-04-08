@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build
         run: |
+            go install github.com/connormckelvey/tmplrun/cmd/tmplrun@v0.1.0
             make build
             cp build/resume.docx build/connor_mckelvey_resume.docx
             cp build/resume.pdf build/connor_mckelvey_resume.pdf
