@@ -20,9 +20,11 @@ jobs:
             make build
             cp build/resume.docx build/connor_mckelvey_resume.docx
             cp build/resume.pdf build/connor_mckelvey_resume.pdf
+            cp build/resume.pdf build/connor_mckelvey_resume.html
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             build/connor_mckelvey_resume.docx
             build/connor_mckelvey_resume.pdf
+            build/connor_mckelvey_resume.html
