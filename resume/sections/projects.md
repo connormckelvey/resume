@@ -1,4 +1,4 @@
-### Projects {pStyle="SectionHeading"}
+### Projects {pStyle="SectionHeading" class="SectionHeading"}
 
 <%
     projects

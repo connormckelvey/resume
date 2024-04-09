@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
 )
 
 var templateDir string
@@ -25,6 +26,9 @@ func main() {
 	}
 
 	md := goldmark.New(
+		goldmark.WithExtensions(
+			extension.DefinitionList,
+		),
 		goldmark.WithExtensions(
 			newDocx(os.DirFS(templateDir)),
 		),

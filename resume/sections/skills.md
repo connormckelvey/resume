@@ -1,4 +1,4 @@
-### Skills {pStyle="SectionHeading"}
+### Skills {pStyle="SectionHeading" class="SectionHeading"}
 
 <%
     const categories = skills
@@ -14,11 +14,11 @@
         return skills
             .map((skill) => {
                 return template("../util/definition-list.md", {
-                    term: `**${skill.name}**`,
+                    term: `${skill.name}`,
                     definition: skill.keywords.join(", ")
                 })
             })
-            .join("\n\n")
+            .join("\n")
     })
     .join("\n")
 %>

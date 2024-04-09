@@ -1,15 +1,18 @@
 SRC=$(shell find . -name "*.go")
 
-.PHONY: clean dir fmt lint test deps markdown build build-docx
+.PHONY: clean dir fmt lint test deps markdown build build-docx build-html
 
 default: all
 
 all: fmt lint test build
 
-build: deps dir markdown build-docx build-pdf
+build: deps dir markdown build-docx build-pdf build-html
 
 build-docx: deps dir markdown
 	go run ./tools/markdown2docx/ -t resume/.docx.d -o build/resume.docx < build/resume.md
+
+build-html: deps dir markdown
+	go run ./tools/markdown2html/ -o build/resume.html < build/resume.md
 
 build-pdf: deps dir markdown build-docx
 	docker-compose run pdf
@@ -32,7 +35,7 @@ deps:
 
 markdown:
 	$(info * {building markdown} *********************************)
-	tmplrun render -p resume/resume.json -o build/resume.md resume/resume.md
+	tmplrun render -y -p resume/resume.json -o build/resume.md resume/resume.md
 
 clean:
 	rm -rf ./build

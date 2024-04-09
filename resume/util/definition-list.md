@@ -1,1 +1,2 @@
-<% term %>: <% definition %>
+<% term %>
+: <% definition %>

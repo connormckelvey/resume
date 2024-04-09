@@ -6,11 +6,11 @@ import (
 	"io"
 	"io/fs"
 
-	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
-	"github.com/yuin/goldmark/parser"
+	east "github.com/yuin/goldmark/extension/ast"
+	"github.com/yuin/goldmark/text"
+
 	"github.com/yuin/goldmark/renderer"
-	"github.com/yuin/goldmark/util"
 )
 
 type docxRenderer struct {
@@ -97,6 +97,21 @@ func (r *docxRenderer) renderBlock(w io.Writer, source []byte, node ast.Node) er
 		}
 	case *ast.List:
 		err := r.renderList(w, source, n)
+		if err != nil {
+			return err
+		}
+	case *east.DefinitionList:
+		err := r.renderDefinitionList(w, source, n)
+		if err != nil {
+			return err
+		}
+	case *east.DefinitionTerm:
+		err := r.renderDefinitionTerm(w, nil, nil, source, n)
+		if err != nil {
+			return err
+		}
+	case *east.DefinitionDescription:
+		err := r.renderDefinitionDescription(w, nil, nil, source, n)
 		if err != nil {
 			return err
 		}
@@ -232,6 +247,72 @@ func (r *docxRenderer) renderList(w io.Writer, source []byte, l *ast.List) error
 	return nil
 }
 
+func (r *docxRenderer) renderDefinitionList(w io.Writer, source []byte, dl *east.DefinitionList) error {
+	for child := dl.FirstChild(); child != nil && child.NextSibling() != nil; child = child.NextSibling().NextSibling() {
+		term := child
+		def := child.NextSibling()
+
+		err := wParagraph(w, func(wpProps, content io.Writer) error {
+			err := r.renderDefinitionTerm(content, wpProps, nil, source, term.(*east.DefinitionTerm))
+			if err != nil {
+				return err
+			}
+
+			err = wRun(content, func(wrProps, content io.Writer) error {
+				return r.renderText(content, wrProps, []byte(": "), &ast.Text{
+					Segment: text.Segment{
+						Start:   0,
+						Stop:    2,
+						Padding: 0,
+					},
+				})
+			})
+			if err != nil {
+				return err
+			}
+			err = r.renderDefinitionDescription(content, wpProps, nil, source, def.(*east.DefinitionDescription))
+			if err != nil {
+				return err
+			}
+			return nil
+		})
+		if err != nil {
+			return err
+		}
+
+	}
+	return nil
+}
+
+func (r *docxRenderer) renderDefinitionTerm(content, wpProps, _ io.Writer, source []byte, dt *east.DefinitionTerm) error {
+	return wRun(content, func(wrProps, content io.Writer) error {
+		if _, err := fmt.Fprint(wrProps, `<w:b /><w:bCs />`); err != nil {
+			return err
+		}
+
+		for child := dt.FirstChild(); child != nil; child = child.NextSibling() {
+			err := r.renderInline(content, wpProps, wrProps, source, child)
+			if err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
+}
+
+func (r *docxRenderer) renderDefinitionDescription(content, wpProps, wrProps io.Writer, source []byte, dt *east.DefinitionDescription) error {
+	return wRun(content, func(wrProps, content io.Writer) error {
+		for child := dt.FirstChild(); child != nil; child = child.NextSibling() {
+			err := r.renderInline(content, wpProps, wrProps, source, child)
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+}
+
 const listItemStyle = `<w:numPr><w:pStyle w:val="ListParagraph" /><w:ilvl w:val="0" /><w:numId w:val="2" /></w:numPr>`
 
 func (r *docxRenderer) renderListItem(w io.Writer, source []byte, l *ast.ListItem) error {
@@ -322,6 +403,16 @@ func (r *docxRenderer) renderInline(w io.Writer, wpProps io.Writer, wrProps io.W
 		if err != nil {
 			return err
 		}
+	case *east.DefinitionTerm:
+		err := r.renderDefinitionTerm(w, wpProps, wrProps, source, nn)
+		if err != nil {
+			return err
+		}
+	case *east.DefinitionDescription:
+		err := r.renderDefinitionDescription(w, wpProps, wrProps, source, nn)
+		if err != nil {
+			return err
+		}
 	default:
 		// Not supported
 		// case *ast.CodeSpan:
@@ -365,24 +456,4 @@ func escapeXMLBytes(src []byte) []byte {
 	return src
 }
 func (r *docxRenderer) AddOptions(opts ...renderer.Option) {
-}
-
-type docxExtension struct {
-	templateDir fs.FS
-}
-
-func newDocx(templateDir fs.FS) *docxExtension {
-	return &docxExtension{
-		templateDir: templateDir,
-	}
-}
-
-func (e *docxExtension) Extend(m goldmark.Markdown) {
-	m.Parser().AddOptions(
-		parser.WithInlineParsers(
-			util.Prioritized(newTabStopParser(), 0),
-		),
-		parser.WithAttribute(),
-	)
-	m.SetRenderer(newDocxRenderer(e.templateDir))
 }

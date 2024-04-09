@@ -1,4 +1,4 @@
-### Work Experience {pStyle="SectionHeading"}
+### Work Experience {pStyle="SectionHeading" class="SectionHeading"}
 
 <%
     work.map(item => template("work-item.md", item))
