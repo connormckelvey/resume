@@ -301,7 +301,7 @@ func (r *docxRenderer) renderDefinitionTerm(content, wpProps, _ io.Writer, sourc
 	})
 }
 
-func (r *docxRenderer) renderDefinitionDescription(content, wpProps, wrProps io.Writer, source []byte, dt *east.DefinitionDescription) error {
+func (r *docxRenderer) renderDefinitionDescription(content, wpProps, _ io.Writer, source []byte, dt *east.DefinitionDescription) error {
 	return wRun(content, func(wrProps, content io.Writer) error {
 		for child := dt.FirstChild(); child != nil; child = child.NextSibling() {
 			err := r.renderInline(content, wpProps, wrProps, source, child)

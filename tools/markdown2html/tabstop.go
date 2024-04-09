@@ -100,38 +100,6 @@ func NewTabStopHTMLRenderer(opts ...html.Option) renderer.NodeRenderer {
 // RegisterFuncs implements renderer.NodeRenderer.RegisterFuncs.
 func (r *TabStopHTMLRenderer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 	reg.Register(kindTabStop, r.renderTabStop)
-	// reg.Register(ast.KindParagraph, r.renderParagraph)
-
-}
-
-func (r *TabStopHTMLRenderer) renderParagraph(w util.BufWriter, source []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
-	var ts *tabStop
-	for child := node.FirstChild(); child != nil; child = child.NextSibling() {
-		var ok bool
-		if ts, ok = child.(*tabStop); ok {
-			break
-		}
-	}
-	if ts != nil {
-		cls := "has-tabstop"
-		existing, ok := node.AttributeString("class")
-		if ok {
-			cls = fmt.Sprintf("%s %s", cls, existing.(string))
-		}
-		node.SetAttributeString("class", cls)
-	}
-	if entering {
-		if node.Attributes() != nil {
-			_, _ = w.WriteString("<p")
-			html.RenderAttributes(w, node, html.ParagraphAttributeFilter)
-			_ = w.WriteByte('>')
-		} else {
-			_, _ = w.WriteString("<p>")
-		}
-	} else {
-		_, _ = w.WriteString("</p>\n")
-	}
-	return ast.WalkContinue, nil
 }
 
 func (r *TabStopHTMLRenderer) renderTabStop(w util.BufWriter, source []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
