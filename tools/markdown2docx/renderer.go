@@ -285,20 +285,13 @@ func (r *docxRenderer) renderDefinitionList(w io.Writer, source []byte, dl *east
 }
 
 func (r *docxRenderer) renderDefinitionTerm(content, wpProps, _ io.Writer, source []byte, dt *east.DefinitionTerm) error {
-	return wRun(content, func(wrProps, content io.Writer) error {
-		if _, err := fmt.Fprint(wrProps, `<w:b /><w:bCs />`); err != nil {
+	for child := dt.FirstChild(); child != nil; child = child.NextSibling() {
+		err := r.renderInline(content, wpProps, nil, source, child)
+		if err != nil {
 			return err
 		}
-
-		for child := dt.FirstChild(); child != nil; child = child.NextSibling() {
-			err := r.renderInline(content, wpProps, wrProps, source, child)
-			if err != nil {
-				return err
-			}
-		}
-
-		return nil
-	})
+	}
+	return nil
 }
 
 func (r *docxRenderer) renderDefinitionDescription(content, wpProps, _ io.Writer, source []byte, dt *east.DefinitionDescription) error {

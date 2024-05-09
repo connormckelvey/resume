@@ -14,7 +14,7 @@
         return skills
             .map((skill) => {
                 return template("../util/definition-list.md", {
-                    term: `${skill.name}`,
+                    term: `**${skill.name}**`,
                     definition: skill.keywords.join(", ")
                 })
             })
