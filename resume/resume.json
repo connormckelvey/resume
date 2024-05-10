@@ -274,7 +274,7 @@
     },
     {
       "name": "Résumé",
-      "description": "This document is built from source; Custom templating language and tooling to support compiling Markdown template files into HTML, Docx, and PDF documents for release.",
+      "description": "Markdown syntax and renderer extensions to support compiling JSON and Markdown template files into HTML, Docx, and PDF Résumé documents for release. Built with Golang.",
       "links": [
         {
           "name": "resume",
