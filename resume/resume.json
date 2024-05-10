@@ -19,7 +19,7 @@
         "text": "github.com/connormckelvey"
       }
     ],
-    "summary": "An experienced Full Stack Software Engineer with a 10-year background in Cloud architecture, distributed systems, and web development. Specializes in orchestrating software projects and crafting complex systems across a broad spectrum of technologies, with a keen emphasis on elevating developer experience and tooling efficiency. Brings exceptional mentorship skills, a dedication to innovation, and a commitment to continuous improvement within dynamic environments."
+    "summary": "An experienced full-stack Software Engineer with a 10-year background in Cloud architecture, distributed systems, and web development. Specializes in orchestrating software projects and crafting complex systems across a broad spectrum of technologies, with a keen emphasis on elevating developer experience and tooling efficiency. Brings exceptional mentorship skills, a dedication to innovation, and a commitment to continuous improvement within dynamic environments."
   },
   "work": [
     {
@@ -263,7 +263,7 @@
   "projects": [
     {
       "name": "Chillweather",
-      "description": "90s themed 24/7 YouTube live stream with up-to-date weather forecasts, precipitation maps, and weather alerts for 12 US cities Built with Go, Typescript, AWS.",
+      "description": "90s-themed 24/7 YouTube live stream with up-to-date weather forecasts, precipitation maps, and weather alerts for 12 US cities Built with Go, Typescript, AWS.",
       "links": [
         {
           "name": "chillweather",
@@ -285,7 +285,7 @@
     },
     {
       "name": "Tmplrun",
-      "description": "Tempalting engine library and command line tool that ditches the DSL for Javascript and other languages. Written in Golang.",
+      "description": "Templating engine library and command line tool that ditches the DSL for JavaScript and other languages. Written in Golang.",
       "links": [
         {
           "name": "tmplrun",
