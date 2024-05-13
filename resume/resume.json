@@ -26,7 +26,8 @@
       "name": "Staff Engineer 1",
       "company": "VMware Carbon Black",
       "dates": {
-        "start": "2019-04-15T00:00:00.000Z"
+        "start": "2019-04-15T00:00:00.000Z",
+        "end": "2024-04-26T00:00:00.000Z"
       },
       "location": {
         "city": "Boulder",
