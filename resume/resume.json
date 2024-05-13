@@ -286,7 +286,7 @@
     },
     {
       "name": "Tmplrun",
-      "description": "Templating engine library and command line tool that ditches the DSL for JavaScript and other languages. Written in Golang.",
+      "description": "Extensible templating engine library and CLI tool providing a language-independent text templating API with out-of-the-box JavaScript support. Written in Golang.",
       "links": [
         {
           "name": "tmplrun",
