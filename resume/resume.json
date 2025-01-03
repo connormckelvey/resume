@@ -317,6 +317,22 @@
         "Active in Amnesty International and Knight's Advocates",
         "Volunteered with UCF Victims Services and Harbor House of Central Florida"
       ]
+    },
+    {
+      "name": "Course Certificate: Algorithms for Searching, Sorting, and Indexing",
+      "institution": "University of Colorado Boulder",
+      "location": {
+        "city": "Boulder",
+        "region": "CO"
+      },
+      "dates": {
+        "start": "2024-12-121T00:00:00.000Z",
+        "end": "2025-01-021T00:00:00.000Z"
+      },
+      "highlights": [
+        "Coursework in algorithms, data structures, and complexity analysis",
+        "Practical applications in searching, sorting, and indexing algorithms"
+      ]
     }
   ],
   "interests": []
