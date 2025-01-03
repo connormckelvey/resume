@@ -15,7 +15,7 @@ build-html: deps dir markdown
 	go run ./tools/markdown2html/ -o build/resume.html < build/resume.md
 
 build-pdf: deps dir markdown build-docx
-	docker-compose run pdf
+	docker compose run pdf
 
 fmt:
 	$(info * [checking formatting] **************************************)
