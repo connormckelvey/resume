@@ -252,27 +252,9 @@
       "keywords": [
         "Alplies first principles thinking and strong analytical skills to deconstruct and understand the fundamental elements of complex technical challenges."
       ]
-    },
-    {
-      "name": "Adaptability",
-      "category": "Soft Skills",
-      "keywords": [
-        "Quickly learns and adapts to new technologies and changing technical landscapes."
-      ]
     }
   ],
   "projects": [
-    {
-      "name": "Chillweather",
-      "description": "90s-themed 24/7 YouTube live stream with up-to-date weather forecasts, precipitation maps, and weather alerts for 12 US cities Built with Go, Typescript, AWS.",
-      "links": [
-        {
-          "name": "chillweather",
-          "href": "https://www.youtube.com/@chillweather2439/streams",
-          "text": "Chillweather"
-        }
-      ]
-    },
     {
       "name": "Résumé",
       "description": "Markdown syntax and renderer extensions to support compiling JSON and Markdown template files into HTML, Docx, and PDF Résumé documents for release. Built with Golang.",
@@ -326,8 +308,8 @@
         "region": "CO"
       },
       "dates": {
-        "start": "2024-12-121T00:00:00.000Z",
-        "end": "2025-01-021T00:00:00.000Z"
+        "start": "2024-12-12T00:00:00.000Z",
+        "end": "2025-01-02T00:00:00.000Z"
       },
       "highlights": [
         "Coursework in algorithms, data structures, and complexity analysis",
