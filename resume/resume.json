@@ -219,34 +219,6 @@
       ]
     },
     {
-      "name": "Collaboration and Mentorship",
-      "category": "Leadership and Project Management",
-      "keywords": [
-        "Elevates team proficiency through pair programming and workshops; accelerates onboarding of new team members."
-      ]
-    },
-    {
-      "name": "Project Delivery",
-      "category": "Leadership and Project Management",
-      "keywords": [
-        "Leads projects from inception to delivery, ensuring they meet strategic objectives and performance goals."
-      ]
-    },
-    {
-      "name": "Strategic Planning",
-      "category": "Leadership and Project Management",
-      "keywords": [
-        "Collaborates with development teams, product, and leadership to align software solutions with business objectives."
-      ]
-    },
-    {
-      "name": "Communication",
-      "category": "Soft Skills",
-      "keywords": [
-        "Effective in presenting complex technical information to both technical and non-technical stakeholders."
-      ]
-    },
-    {
       "name": "Problem-Solving",
       "category": "Soft Skills",
       "keywords": [
@@ -311,10 +283,20 @@
         "start": "2024-12-12T00:00:00.000Z",
         "end": "2025-01-02T00:00:00.000Z"
       },
-      "highlights": [
-        "Coursework in algorithms, data structures, and complexity analysis",
-        "Practical applications in searching, sorting, and indexing algorithms"
-      ]
+      "highlights": []
+    },
+    {
+      "name": "Course Certificate: Trees and Graphs: Basics",
+      "institution": "University of Colorado Boulder",
+      "location": {
+        "city": "Boulder",
+        "region": "CO"
+      },
+      "dates": {
+        "start": "2025-01-04T00:00:00.000Z",
+        "end": "2025-01-09T00:00:00.000Z"
+      },
+      "highlights": []
     }
   ],
   "interests": []
